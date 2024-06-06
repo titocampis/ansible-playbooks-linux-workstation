@@ -4,6 +4,12 @@
     - base
     - base-packages
 
+- name: Download and install ohmyzsh
+  import_tasks: ohmyzsh.yml
+  tags:
+    - base
+    - base-ohmyzsh
+
 - name: Bashrc useful configuration
   import_tasks: bashrc_config.yml
   tags:
