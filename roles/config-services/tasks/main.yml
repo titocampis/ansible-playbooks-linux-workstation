@@ -5,4 +5,4 @@
     - config-services-docker
 
 # WARNING: You need to close your current terminal and start another one in order your user
-# have access to sudo group
+# have access to docker group
