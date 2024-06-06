@@ -1,0 +1,7 @@
+- name: Vim Configuration
+  template:
+    src: vimrc.j2
+    dest: "{{ item }}"
+  with_items:
+    - "/root/.vimrc"
+    - "/home/{{ ansible_user }}/.vimrc"
