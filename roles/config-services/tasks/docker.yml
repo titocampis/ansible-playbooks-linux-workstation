@@ -35,3 +35,6 @@
     name: docker
     enabled: yes
     state: started
+
+# WARNING: You need to close your current terminal and start another one in order your user
+# have access to sudo group
