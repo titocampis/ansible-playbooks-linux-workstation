@@ -1,15 +1,13 @@
 # Documentation of how to install and configure ohmyzsh in WSL (Ubuntu)
 
 ## Installation
+As installing `ohmyzsh` is an interactive work, I think that do it with ansible it is not worth at all. So here is how to do it manually, however you read the word `manually` do not suffer, it is very straight-forward.
 
 The official documentation: [https://ohmyz.sh/](https://ohmyz.sh/)
 
 One documentation very good explained: [https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/](https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/)
 
-My ansible playbook: [roles/base/tasks/ohmyzsh.yml](roles/base/tasks/ohmyzsh.yml)
-
 ## Terminal Configuration
-
 :one: Open the `~/.zshrc` file and include
 ```bash
 # Set name of the theme to load --- if set to "random", it will
@@ -62,8 +60,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/
 ```
 
 ## Installing missing Powerline Fonts
-
-
 :one: Clone the powerline repository in your wsl
 ```bash
 git clone https://github.com/powerline/fonts.git
