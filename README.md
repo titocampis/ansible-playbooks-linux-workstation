@@ -87,15 +87,12 @@ sudo apt install ansible
 ansible-playbook playbooks/wsl/base.yml -i inventories/wsl.ini --ask-vault-pass --tags base-packages --check
 ```
 
-- To configure useful topics on ~/.bashrc:
+- To configure useful topics on your favourite shell:
 ```bash
-ansible-playbook playbooks/wsl/base.yml -i inventories/wsl.ini --ask-vault-pass --tags base-bashrc-config --check
+ansible-playbook playbooks/base.yml -i inventories/inventory.ini --ask-vault-pass --tags base-shell-config --check
 ```
 
-- **BETA:** To configure ohmyzsh and ~/.zshrc:
-```bash
-ansible-playbook playbooks/wsl/base.yml -i inventories/wsl.ini --ask-vault-pass --tags base-bashrc-config --check
-```
+- To configure ohmyzsh and ~/.zshrc... We don't have ansible playbook, sorry. We think with this documentation it will be really straight-forward: [README_ohmyzsh.md](README_ohmyzsh.md)
 
 - To configure vim:
 ```bash

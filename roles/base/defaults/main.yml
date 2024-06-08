@@ -1,3 +1,6 @@
+# General Variable
+ancible_managed: 'WARNING: This file is managed by Ansible. Any changes will be overwritten.'
+
 # Installed Packages Management
 base_packages:
   - apt-transport-https
@@ -14,11 +17,11 @@ base_packages:
   - sl
   - vim
 
-# ~/.bashrc config
-base_bashrc_block: |
+# Shell config
+base_shell: '.bashrc'
+base_shell_block: |
     # Vim aliases
     alias svim='sudo -E vim'
-    alias svb='sudo -E vim ~/.bashrc'
 
     # Docker aliases
     alias docker-rm-all='docker rm -f $(docker ps -aq)'
