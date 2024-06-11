@@ -80,6 +80,46 @@ pip3 install python3-pip
 sudo apt install ansible
 ```
 
+## Sensitive Data managed by Ansible vault
+To store the Ansible Sensitive Data we use [Ansible vault](https://docs.ansible.com/ansible/latest/vault_guide/index.html).
+
+> :paperclip: **NOTE:** If you have your ubuntu user on `/etc/sudoers` file to become sudo without password, you can just execute the ansible playbook with this flag and you can forget about ansible_vault:
+> ```bash
+> --extra-vars ansible_user=<your_ubuntu_user>
+> ```
+
+To create the vault.yml file:
+```bash
+ansible-vault create vault.yml
+```
+
+It will ask for password, and then **vi** editor will open and we need to fulfill it in yml format like this:
+
+```yml
+ansible_user: ''
+ansible_become_pass: ''
+```
+
+Then, Ansible will create a vault file in the folder you executed the `ansible-vault`: `vault.yml`
+
+To use the vault variables inside the playbooks, we need to include:
+
+```yml
+vars_files:
+ - relative/path/from/playbook/to/vault/file
+```
+
+And then add at the end of the `ansible-playbook` execution `ask-vault-pass`:
+
+```bash
+ansible-playbook playbook... -i .... --ask-vault-pass
+```
+
+> :paperclip: **NOTE:** If we want to edit the vault file:
+> ```bash
+> ansible-vault edit vault.yml
+> ```
+
 ## Launching wsl base ansible playbook
 
 - To ensure base packages installed on wsl (ubuntu):
@@ -88,6 +128,11 @@ ansible-playbook playbooks/wsl/base.yml -i inventories/wsl.ini --ask-vault-pass 
 ```
 
 - To configure useful topics on your favourite shell:
+
+:one: Configure your favorite shell on the playbook the var `base_shell: <your_favourite_shell>` (by default it is `base_shell: '.bashrc'`)
+
+:two: Launch the playbook
+
 ```bash
 ansible-playbook playbooks/base.yml -i inventories/inventory.ini --ask-vault-pass --tags base-shell-config --check
 ```
@@ -104,8 +149,21 @@ To check more available tasks check [roles/base/tasks/main.yml](roles/base/tasks
 ## Launching wsl config-services playbook
 
 - To install and start docker on wsl (ubuntu):
+
+:one: Configure on your playbook the var `docker_enabled: true`
+
+:two: Launch the playbook
 ```bash
 ansible-playbook playbooks/wsl/config-services.yml -i inventories/wsl.ini --ask-vault-pass --tags config-services-docker --check
+```
+
+- To install terraform on wsl (ubuntu):
+
+:one: Configure on your playbook the var `terraform_enabled: true`
+
+:two: Launch the playbook
+```bash
+ansible-playbook playbooks/wsl/config-services.yml -i inventories/wsl.ini --ask-vault-pass --tags config-services-terraform --check
 ```
 
 To check more available tasks check [roles/config-services/tasks/main.yml](roles/config-services/tasks/main.yml)

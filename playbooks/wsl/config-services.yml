@@ -1,7 +1,9 @@
 - hosts: localhost
   become: yes
   
-  # vars:
+  vars:
+    docker_enabled: true
+    terraform_enabled: true
   
   vars_files:
     - ../../general_vars.yml
