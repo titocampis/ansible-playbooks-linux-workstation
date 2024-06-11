@@ -2,6 +2,27 @@
 
 Repository containing all the playbooks to configure WSL (Ubuntu) using **Ansible**
 
+## Index
+
+Certainly! Here's an index for your markdown file:
+
+## Index
+
+1. [Install and configure Ubuntu in WSL](#install-and-configure-ubuntu-in-wsl)
+2. [Project Structure](#project-structure)
+3. [Previous Steps before executing Ansible Playbooks](#previous-steps-before-executing-ansible-playbooks)
+4. [Sensitive Data managed by Ansible vault](#sensitive-data-managed-by-ansible-vault)
+5. [Launching wsl base ansible playbook](#launching-wsl-base-ansible-playbook)
+    - [Ensure base packages installed on wsl (ubuntu)](#ensure-base-packages-installed-on-wsl-ubuntu)
+    - [Configure useful topics on your favourite shell](#configure-useful-topics-on-your-favourite-shell)
+    - [Configure ohmyzsh and ~/.zshrc](#configure-ohmyzsh-and-zshrc)
+    - [Configure vim](#configure-vim)
+    - [More](#more)
+6. [Launching wsl config-services playbook](#launching-wsl-config-services-playbook)
+    - [Install and start docker on wsl (ubuntu)](#install-and-start-docker-on-wsl-ubuntu)
+    - [Install terraform on wsl (ubuntu)](#install-terraform-on-wsl-ubuntu)
+    - [More](#more-1)
+
 ## Install and configure Ubuntu in WSL
 
 :one: Go to windows Search and look for `Turn Windows features windows on or off`.
@@ -121,42 +142,41 @@ ansible-playbook playbook... -i .... --ask-vault-pass
 > ```
 
 ## Launching wsl base ansible playbook
-### Ensure base packages installed on wsl (ubuntu):
+#### Ensure base packages installed on wsl (ubuntu)
 ```bash
 ansible-playbook playbooks/wsl/base.yml -i inventories/wsl.ini --ask-vault-pass --tags base-packages --check
 ```
 
-### Configure useful topics on your favourite shell:
+#### Configure useful topics on your favourite shell
 
 1. Configure your favorite shell on the playbook the var `base_shell: <your_favourite_shell>` (by default it is `base_shell: '.bashrc'`)
-2. Launch the playbook
-
+2. Launch the playbook:
 ```bash
 ansible-playbook playbooks/base.yml -i inventories/inventory.ini --ask-vault-pass --tags base-shell-config --check
 ```
 
-### Configure ohmyzsh and ~/.zshrc
+#### Configure ohmyzsh and ~/.zshrc
 We don't have ansible playbook, sorry. We think with this documentation it will be really straight-forward: [README_ohmyzsh.md](README_ohmyzsh.md)
 
-### Configure vim:
+#### Configure vim
 ```bash
 ansible-playbook playbooks/wsl/base.yml -i inventories/wsl.ini --ask-vault-pass --tags base-vim-config --check
 ```
 
-### More
+#### More
 To check more available tasks check [roles/base/tasks/main.yml](roles/base/tasks/main.yml)
 
 
 ## Launching wsl config-services playbook
-### Install and start docker on wsl (ubuntu):
+#### Install and start docker on wsl (ubuntu)
 
 1. Configure on your playbook the var `docker_enabled: true`
-2. Launch the playbook
+2. Launch the playbook:
 ```bash
 ansible-playbook playbooks/wsl/config-services.yml -i inventories/wsl.ini --ask-vault-pass --tags config-services-docker --check
 ```
 
-### Install terraform on wsl (ubuntu):
+#### Install terraform on wsl (ubuntu)
 
 1. Configure on your playbook the var `terraform_enabled: true`
 2. Launch the playbook
@@ -164,5 +184,5 @@ ansible-playbook playbooks/wsl/config-services.yml -i inventories/wsl.ini --ask-
 ansible-playbook playbooks/wsl/config-services.yml -i inventories/wsl.ini --ask-vault-pass --tags config-services-terraform --check
 ```
 
-### More
+#### More
 To check more available tasks check [roles/config-services/tasks/main.yml](roles/config-services/tasks/main.yml)
