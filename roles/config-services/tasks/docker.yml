@@ -1,6 +1,6 @@
 - name: Ensure docker official GPG key installed
   apt_key:
-    url: "{{ docker_apt_key }}"
+    url: "{{ docker_GPG_key }}"
     state: present
 
 - name: Ensure Docker APT repository
@@ -8,7 +8,7 @@
     repo: "{{ docker_repository }}"
     state: present
 
-- name: Update the apt package index again
+- name: Update the apt package index
   apt:
     update_cache: yes
     force_apt_get: yes
@@ -23,6 +23,15 @@
     name: "{{ ansible_user }}"
     groups: docker
     append: yes
+
+- name: Verify docker installation
+  command: docker --version
+  register: docker_version
+
+- name: Display docker version
+  debug:
+    msg: "Docker version installed: {{ docker_version.stdout }}"
+  when: not ansible_check_mode
 
 # - name: Ensure configuration for docker daemon
 #   template:
