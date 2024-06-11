@@ -121,52 +121,48 @@ ansible-playbook playbook... -i .... --ask-vault-pass
 > ```
 
 ## Launching wsl base ansible playbook
-
-#### Ensure base packages installed on wsl (ubuntu):
+### Ensure base packages installed on wsl (ubuntu):
 ```bash
 ansible-playbook playbooks/wsl/base.yml -i inventories/wsl.ini --ask-vault-pass --tags base-packages --check
 ```
 
-#### Configure useful topics on your favourite shell:
+### Configure useful topics on your favourite shell:
 
-:one: Configure your favorite shell on the playbook the var `base_shell: <your_favourite_shell>` (by default it is `base_shell: '.bashrc'`)
-
-:two: Launch the playbook
+1. Configure your favorite shell on the playbook the var `base_shell: <your_favourite_shell>` (by default it is `base_shell: '.bashrc'`)
+2. Launch the playbook
 
 ```bash
 ansible-playbook playbooks/base.yml -i inventories/inventory.ini --ask-vault-pass --tags base-shell-config --check
 ```
 
-#### Configure ohmyzsh and ~/.zshrc
+### Configure ohmyzsh and ~/.zshrc
 We don't have ansible playbook, sorry. We think with this documentation it will be really straight-forward: [README_ohmyzsh.md](README_ohmyzsh.md)
 
-#### Configure vim:
+### Configure vim:
 ```bash
 ansible-playbook playbooks/wsl/base.yml -i inventories/wsl.ini --ask-vault-pass --tags base-vim-config --check
 ```
 
-#### More
+### More
 To check more available tasks check [roles/base/tasks/main.yml](roles/base/tasks/main.yml)
 
+
 ## Launching wsl config-services playbook
+### Install and start docker on wsl (ubuntu):
 
-#### Install and start docker on wsl (ubuntu):
-
-:one: Configure on your playbook the var `docker_enabled: true`
-
-:two: Launch the playbook
+1. Configure on your playbook the var `docker_enabled: true`
+2. Launch the playbook
 ```bash
 ansible-playbook playbooks/wsl/config-services.yml -i inventories/wsl.ini --ask-vault-pass --tags config-services-docker --check
 ```
 
-#### Install terraform on wsl (ubuntu):
+### Install terraform on wsl (ubuntu):
 
-:one: Configure on your playbook the var `terraform_enabled: true`
-
-:two: Launch the playbook
+1. Configure on your playbook the var `terraform_enabled: true`
+2. Launch the playbook
 ```bash
 ansible-playbook playbooks/wsl/config-services.yml -i inventories/wsl.ini --ask-vault-pass --tags config-services-terraform --check
 ```
 
-#### More
+### More
 To check more available tasks check [roles/config-services/tasks/main.yml](roles/config-services/tasks/main.yml)
