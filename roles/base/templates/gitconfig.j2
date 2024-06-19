@@ -1,0 +1,8 @@
+{{ ancible_managed | comment }}
+
+[user]
+        email = {{ base_gitconfig_email }}
+        name = {{ base_gitconfig_username }}
+[alias]
+        blog = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+        slog = log --color --pretty=format:'%C(auto)%h %C(bold blue)%an%Creset: %s' --abbrev-commit

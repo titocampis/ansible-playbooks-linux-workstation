@@ -33,3 +33,7 @@ base_shell_block: |
 
     # Terraform alias
     alias tf='terraform'
+
+# Gitconfig
+base_gitconfig_email: ''
+base_gitconfig_username: ''

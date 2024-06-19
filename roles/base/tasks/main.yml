@@ -10,6 +10,12 @@
     - base
     - base-shell-config
 
+- name: Git useful configuration
+  import_tasks: git_config.yml
+  tags:
+    - base
+    - base-git-config
+
 - name: Ensure vim configuration
   import_tasks: vim_config.yml
   tags:
