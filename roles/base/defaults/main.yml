@@ -30,3 +30,10 @@ base_shell_block: |
     # Kubectl aliases
     alias kc='kubectl'
     alias kcc='kubectl config'
+
+    # Terraform alias
+    alias tf='terraform'
+
+# Gitconfig
+base_gitconfig_email: ''
+base_gitconfig_username: ''

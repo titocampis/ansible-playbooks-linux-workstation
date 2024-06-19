@@ -3,6 +3,8 @@
   
   vars:
     base_shell: '.zshrc'
+    base_gitconfig_email: 'andreasscorelli@gmail.com'
+    base_gitconfig_username: 'titocampis'
   
   vars_files:
     - ../../general_vars.yml
