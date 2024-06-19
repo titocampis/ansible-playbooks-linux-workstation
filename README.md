@@ -1,6 +1,6 @@
 # Ansible Playbooks to configure WSL (Ubuntu) :tophat:
 
-Welcome to the WSL Ubuntu Configuration with Ansible project! This repository is your go-to resource for effortlessly configuring your WSL (Windows Subsystem for Linux) environment using the power of Ansible playbooks. :tophat:
+Welcome to the WSL Ubuntu Configuration with Ansible project! This repository is your go-to resource for effortlessly configuring your WSL (Windows Subsystem for Linux) environment using the power of Ansible. :tophat:
 
 ## Index
 
