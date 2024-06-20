@@ -34,6 +34,56 @@ base_shell_block: |
     # Terraform alias
     alias tf='terraform'
 
+    # Show custom .gitignore
+    alias show-gitignore='echo -e "#\n# Alex default .gitignore, any manual change will be overwritten.\n#\n
+    # General untracked
+    __pycache__/
+    backup/
+    *venv*
+    \n# Environment variable files
+    .env
+    .env.*
+    \n# Log files
+    logs/
+    *.log
+    \n# Sensitive data
+    *secret*
+    *vault*
+    \n# Output files
+    output/
+    \n# IDEs config files
+    .vscode/
+    .idea/
+    "'
+
+    # Show custom .dockerignore
+    alias show-dockeringore='echo -e "#\n# Alex default .dockerignore, any manual change will be overwritten.\n#\n
+    # General untracked
+    __pycache__/
+    .gitignore
+    backup/
+    *Dockerfile*
+    docker-compose*
+    README*
+    old/
+    secret*
+    unused/
+    *venv*
+    \n# Environment variable files
+    .env
+    .env.*
+    \n# Log files
+    logs/
+    *.log
+    \n# Sensitive data
+    *secret*
+    *vault*
+    "'
+
+    # SSH config --> ~/.ssh/config
+
+    # Git aliases --> Configured in ~/.gitconfig
+
 # Gitconfig
 base_gitconfig_email: ''
 base_gitconfig_username: ''
