@@ -1,5 +1,5 @@
 - name: Ensure docker installed and running
-  import_tasks: docker.yml
+  import_tasks: docker.yaml
   tags:
     - config-services
     - config-services-docker
@@ -9,7 +9,7 @@
 # have access to docker group
 
 - name: Ensure terraform installed
-  import_tasks: terraform.yml
+  import_tasks: terraform.yaml
   tags:
     - config-services
     - config-services-terraform
