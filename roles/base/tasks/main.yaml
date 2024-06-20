@@ -1,23 +1,23 @@
 - name: Ensure base packages installed
-  import_tasks: base_packages.yml
+  import_tasks: base_packages.yaml
   tags:
     - base
     - base-packages
 
 - name: Shell useful configuration
-  import_tasks: shell_config.yml
+  import_tasks: shell_config.yaml
   tags:
     - base
     - base-shell-config
 
 - name: Git useful configuration
-  import_tasks: git_config.yml
+  import_tasks: git_config.yaml
   tags:
     - base
     - base-git-config
 
 - name: Ensure vim configuration
-  import_tasks: vim_config.yml
+  import_tasks: vim_config.yaml
   tags:
     - base
     - base-vim-config
