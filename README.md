@@ -110,9 +110,9 @@ To create the vault.yaml file:
 ansible-vault create vault.yaml
 ```
 
-It will ask for password, and then **vi** editor will open and we need to fulfill it in yml format like this:
+It will ask for password, and then **vi** editor will open and we need to fulfill it in YAML format like this:
 
-```yml
+```yaml
 ansible_user: ''
 ansible_become_pass: ''
 ```
@@ -121,7 +121,7 @@ Then, Ansible will create a vault file in the folder you executed the `ansible-v
 
 To use the vault variables inside the playbooks, we need to include:
 
-```yml
+```.yaml
 vars_files:
  - relative/path/from/playbook/to/vault/file
 ```
