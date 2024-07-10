@@ -1,23 +1,42 @@
+- name: Set fact local_user
+  ansible.builtin.import_tasks: set_facts.yaml
+  tags:
+    - base
+
 - name: Ensure base packages installed
-  import_tasks: base_packages.yaml
+  ansible.builtin.import_tasks: base_packages.yaml
   tags:
     - base
     - base-packages
 
 - name: Shell useful configuration
-  import_tasks: shell_config.yaml
+  ansible.builtin.import_tasks: shell_config.yaml
   tags:
     - base
     - base-shell-config
 
 - name: Git useful configuration
-  import_tasks: git_config.yaml
+  ansible.builtin.import_tasks: git_config.yaml
   tags:
     - base
     - base-git-config
 
 - name: Ensure vim configuration
-  import_tasks: vim_config.yaml
+  ansible.builtin.import_tasks: vim_config.yaml
   tags:
     - base
     - base-vim-config
+
+- name: Docker installation, configuration and service running
+  ansible.builtin.import_tasks: docker.yaml
+  tags:
+    - base
+    - base-docker
+  when: base_docker_enabled
+
+- name: Terraform installation and configuration
+  ansible.builtin.import_tasks: terraform.yaml
+  tags:
+    - base
+    - base-terraform
+  when: base_terraform_enabled

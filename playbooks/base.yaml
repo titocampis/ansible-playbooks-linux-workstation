@@ -1,19 +1,22 @@
-- hosts: localhost
-  become: yes
-  
+- name: Playbook to configure basis on work Ubuntu machine (WSL)
+  hosts: localhost
+  become: true
+
   vars:
     base_shell: '.zshrc'
     base_gitconfig_email: 'andreasscorelli@gmail.com'
     base_gitconfig_username: 'titocampis'
-  
+    base_docker_enabled: true
+    base_terraform_enabled: true
+
   vars_files:
     - ../../general_vars.yaml
     - ../../vault.yaml
-  
+
   # tasks:
   #   - name: Debug test_var
-  #     debug:
-  #       var: ansible_managed
-  
+  #     ansible.builtin.debug:
+  #       var: ansible_user_id
+
   roles:
     - "roles/base"
