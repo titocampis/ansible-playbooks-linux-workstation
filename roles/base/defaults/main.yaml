@@ -1,5 +1,5 @@
 # General Variable
-ancible_managed: 'WARNING: This file is managed by Ansible. Any changes will be overwritten.'
+base_ansible_managed: 'WARNING: This file is managed by Ansible. Any changes will be overwritten.'
 
 # Installed Packages Management
 base_packages:
@@ -86,3 +86,13 @@ base_shell_block: |
 # Gitconfig
 base_gitconfig_email: ''
 base_gitconfig_username: ''
+
+# Docker Management
+base_docker_enabled: false
+base_docker_gpg_key: "https://download.docker.com/linux/ubuntu/gpg"
+base_docker_repository: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+# Terraform Management
+base_terraform_enabled: false
+base_terraform_hashicorp_gpg_key: "https://apt.releases.hashicorp.com/gpg"
+base_terraform_hashicorp_repository: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"

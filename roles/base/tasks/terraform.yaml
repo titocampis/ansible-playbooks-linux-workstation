@@ -1,0 +1,33 @@
+- name: Terraform | Ensure required dependencies
+  ansible.builtin.apt:
+    name: software-properties-common
+    state: present
+
+- name: Terraform | Ensure HashiCorp GPG key
+  ansible.builtin.apt_key:
+    url: "{{ base_terraform_hashicorp_gpg_key }}"
+    state: present
+
+- name: Terraform | Ensure HashiCorp APT repository
+  ansible.builtin.apt_repository:
+    repo: "{{ base_terraform_hashicorp_repository }}"
+    state: present
+
+- name: Terraform | Update the apt package index
+  ansible.builtin.apt:
+    update_cache: true
+    force_apt_get: true
+
+- name: Terraform | Install Terraform
+  ansible.builtin.apt:
+    name: terraform
+    state: present
+
+- name: Terraform | Verify Terraform installation
+  ansible.builtin.command: terraform version
+  register: terraform_version
+
+- name: Terraform | Display Terraform version
+  ansible.builtin.debug:
+    msg: "Terraform version installed: {{ terraform_version.stdout }}"
+  when: not ansible_check_mode
