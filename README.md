@@ -108,8 +108,8 @@ To create the vault.yaml file:
 ansible-vault create vault.yaml
 ```
 
-It will ask for password, and then **vi** editor will open and we need to fulfill it in yaml format like this:
 
+It will ask for password, and then **vi** editor will open and we need to fulfill it in yaml format like this:
 ```yaml
 ansible_become_pass: ''
 ```
