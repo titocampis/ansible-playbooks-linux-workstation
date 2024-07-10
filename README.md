@@ -126,7 +126,8 @@ And then add at the end of the `ansible-playbook` execution `ask-vault-pass`:
 ansible-playbook playbook... -i .... --ask-vault-pass
 ```
 
-> :paperclip: **NOTE:** If we want to edit the vault file:
+> [!NOTE]
+> If we want to edit the vault file:
 > ```bash
 > ansible-vault edit vault.yaml
 > ```
