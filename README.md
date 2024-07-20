@@ -108,7 +108,6 @@ To create the vault.yaml file:
 ansible-vault create vault.yaml
 ```
 
-
 It will ask for password, and then **vi** editor will open and we need to fulfill it in yaml format like this:
 ```yaml
 ansible_become_pass: ''
@@ -116,36 +115,40 @@ ansible_become_pass: ''
 
 Then, Ansible will create a vault file in the folder you executed the `ansible-vault`: `vault.yaml`
 
-To use the vault variables inside the playbooks, we need to include:
 
+To use the vault variables inside the playbooks, we need to:
+
+- Include the vault into the playbook confi:
 ```yaml
 vars_files:
  - relative/path/from/playbook/to/vault/file
 ```
 
-And then add at the end of the `ansible-playbook` execution `ask-vault-pass`:
+- Create a new file `vault_password.txt` and fulfill it just with the content of the vault password.
+
+- Add to the `ansible-playbook` execution `--vault-password-file=vault_password.txt`:
 
 ```bash
-ansible-playbook playbook... -i .... --ask-vault-pass
+ansible-playbook playbook... -i .... --vault-password-file=vault_password.txt
 ```
 
 > [!NOTE]
 > If we want to edit the vault file:
 > ```bash
-> ansible-vault edit vault.yaml
+> ansible-vault edit vault.yaml --vault-password-file=vault_password.txt
 > ```
 
 ## Launching base ansible playbook
 #### Ensure base packages installed
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --ask-vault-pass --tags base-packages --check
+ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --tags base-packages --check
 ```
 
 #### Configure useful topics on your favourite shell
 1. Configure your favorite shell on the playbook the var `base_shell: <your_favourite_shell>` (by default it is `base_shell: '.bashrc'`)
 2. Launch the playbook:
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --ask-vault-pass --tags base-shell-config --check
+ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --tags base-shell-config --check
 ```
 
 #### Configure ohmyzsh and ~/.zshrc
@@ -153,21 +156,21 @@ We don't have ansible playbook, sorry. We think with this documentation it will 
 
 #### Configure vim
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --ask-vault-pass --tags base-vim-config --check
+ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --tags base-vim-config --check
 ```
 
 #### Install, configure and start docker
 1. Configure on your playbook the var `base_docker_enabled: true`
 2. Launch the playbook:
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --ask-vault-pass --tags config-services-docker --check
+ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --tags config-services-docker --check
 ```
 
 #### Install and configure terraform
 1. Configure on your playbook the var `base_terraform_enabled: true`
 2. Launch the playbook
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --ask-vault-pass --tags config-services-terraform --check
+ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --tags config-services-terraform --check
 ```
 
 #### More

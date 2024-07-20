@@ -48,7 +48,7 @@ base_shell_block: |
     *.log
     \n# Sensitive data
     *secret*
-    *vault*
+    *password*
     \n# Output files
     output/
     \n# IDEs config files
