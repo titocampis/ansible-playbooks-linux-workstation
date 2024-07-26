@@ -1,0 +1,12 @@
+- name: tmux | Ensure tmux installed
+  ansible.builtin.apt:
+    name: tmux
+    state: present
+
+- name: tmux | Configure tmux
+  ansible.builtin.template:
+    src: tmux-custom-conf.j2
+    dest: "/tmp/tmux-custom-conf"
+    owner: "{{ local_user }}"
+    group: "{{ local_user }}"
+    mode: "0644"

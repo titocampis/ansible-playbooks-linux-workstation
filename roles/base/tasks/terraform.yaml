@@ -18,12 +18,12 @@
     update_cache: true
     force_apt_get: true
 
-- name: Terraform | Install Terraform
+- name: Terraform | Ensure Terraform package installed
   ansible.builtin.apt:
     name: terraform
     state: present
 
-- name: Terraform | Verify Terraform installation
+- name: Terraform | Verify Terraform package installed
   ansible.builtin.command: terraform version
   register: terraform_version
 

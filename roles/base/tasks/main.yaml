@@ -2,6 +2,11 @@
   ansible.builtin.import_tasks: set_facts.yaml
   tags:
     - base
+    - base-shell-config
+    - base-git-config
+    - base-vim-config
+    - base-tmux
+    - base-docker
 
 - name: Ensure base packages installed
   ansible.builtin.import_tasks: base_packages.yaml
@@ -27,14 +32,20 @@
     - base
     - base-vim-config
 
-- name: Docker installation, configuration and service running
+- name: Ensure tmux installed and configured
+  ansible.builtin.import_tasks: tmux.yaml
+  tags:
+    - base
+    - base-tmux
+
+- name: Ensure docker installed, configured and running
   ansible.builtin.import_tasks: docker.yaml
   tags:
     - base
     - base-docker
   when: base_docker_enabled
 
-- name: Terraform installation and configuration
+- name: Ensure Terraform installed and configured
   ansible.builtin.import_tasks: terraform.yaml
   tags:
     - base
