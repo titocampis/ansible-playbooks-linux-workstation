@@ -15,7 +15,7 @@ For now, the only workstation distro available is `Ubuntu`.
     - [Configure ohmyzsh and ~/.zshrc](#configure-ohmyzsh-and-zshrc)
     - [Configure vim](#configure-vim)
     - [Ensure and configure tmux](#ensure-and-configure-tmux)
-    - [Ensure, configure and start docker](#ensure-configure-and-start-docker)
+    - [Ensure docker installed, configured, enabled and started](#ensure-docker-installed-configured-enabled-and-started)
     - [Ensure and configure terraform](#ensure-and-configure-terraform)
     - [More](#more)
 
@@ -177,7 +177,7 @@ Tags: `base-tmux`
 ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --tags base-tmux --check
 ```
 
-#### Ensure, configure and start docker
+#### Ensure docker installed, configured, enabled and started
 1. Configure on your playbook the var `base_docker_enabled: true`
 2. Launch the playbook:
 

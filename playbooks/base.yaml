@@ -3,7 +3,6 @@
   become: true
 
   vars:
-    base_shell: ".zshrc"
     base_gitconfig_email: "andreasscorelli@gmail.com"
     base_gitconfig_username: "titocampis"
     base_docker_enabled: true

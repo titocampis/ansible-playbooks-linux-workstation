@@ -25,6 +25,3 @@ output/
 # IDEs config files
 .vscode/
 .idea/
-
-# Other files
-vault.yaml
