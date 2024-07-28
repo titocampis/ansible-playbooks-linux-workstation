@@ -154,7 +154,7 @@ ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-passwo
 ```
 
 #### Configure useful topics on your favourite shell
-1. Configure your favorite shell on the playbook the var `base_shell: <your_favourite_shell>` (by default it is `base_shell: '.bashrc'`)
+1. Configure your favorite shell on the playbook the var `base_shell: <your_favourite_shell>` (by default it is `base_shell: '.zshrc'`)
 2. Launch the playbook:
 
 Tags: `base-shell-config`
