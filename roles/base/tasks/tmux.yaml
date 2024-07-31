@@ -6,7 +6,7 @@
 - name: tmux | Configure tmux
   ansible.builtin.template:
     src: tmux-custom-conf.j2
-    dest: "/tmp/tmux-custom-conf"
+    dest: "/home/{{ local_user }}/.tmux.conf"
     owner: "{{ local_user }}"
     group: "{{ local_user }}"
     mode: "0644"

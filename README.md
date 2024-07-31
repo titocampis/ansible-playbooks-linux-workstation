@@ -15,7 +15,7 @@ For now, the only workstation distro available is `Ubuntu`.
     - [Configure ohmyzsh and ~/.zshrc](#configure-ohmyzsh-and-zshrc)
     - [Configure vim](#configure-vim)
     - [Ensure and configure tmux](#ensure-and-configure-tmux)
-    - [Ensure, configure and start docker](#ensure-configure-and-start-docker)
+    - [Ensure docker installed, configured, enabled and started](#ensure-docker-installed-configured-enabled-and-started)
     - [Ensure and configure terraform](#ensure-and-configure-terraform)
     - [More](#more)
 
@@ -144,22 +144,22 @@ ansible-playbook playbook... -i .... --vault-password-file=vault_password.txt
 #### Execute the full role
 Tags: `base`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --tags base --check
+ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base --check
 ```
 
 #### Ensure base packages installed
 Tags: `base-packages`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --tags base-packages --check
+ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-packages --check
 ```
 
 #### Configure useful topics on your favourite shell
-1. Configure your favorite shell on the playbook the var `base_shell: <your_favourite_shell>` (by default it is `base_shell: '.bashrc'`)
+1. Configure your favorite shell on the playbook the var `base_shell: <your_favourite_shell>` (by default it is `base_shell: '.zshrc'`)
 2. Launch the playbook:
 
 Tags: `base-shell-config`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --tags base-shell-config --check
+ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-shell-config --check
 ```
 
 #### Configure ohmyzsh and ~/.zshrc
@@ -168,22 +168,22 @@ We don't have ansible playbook, sorry. We think with this documentation it will 
 #### Configure vim
 Tags: `base-vim-config`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --tags base-vim-config --check
+ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-vim-config --check
 ```
 
 #### Ensure and configure tmux
 Tags: `base-tmux`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --tags base-tmux --check
+ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-tmux --check
 ```
 
-#### Ensure, configure and start docker
+#### Ensure docker installed, configured, enabled and started
 1. Configure on your playbook the var `base_docker_enabled: true`
 2. Launch the playbook:
 
 Tags: `base-docker`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --tags base-docker --check
+ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-docker --check
 ```
 
 #### Ensure and configure terraform
@@ -192,7 +192,7 @@ ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-passwo
 
 Tags: `base-terraform`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --tags base-terraform --check
+ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-terraform --check
 ```
 
 #### More

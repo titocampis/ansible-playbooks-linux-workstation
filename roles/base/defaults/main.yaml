@@ -21,8 +21,11 @@ base_packages:
   - vim
 
 # Shell config
-base_shell: ".bashrc"
+base_shell: ".zshrc" # .zshrc / .bashrc
 base_shell_block: |
+    # Ignore duplicate in history
+    setopt HIST_IGNORE_DUPS
+
     # Vim aliases
     alias svim='sudo -E vim'
 
@@ -79,7 +82,7 @@ base_shell_block: |
     *.log
     \n# Sensitive data
     *secret*
-    *vault*
+    *password*
     "'
 
     # SSH config --> ~/.ssh/config
