@@ -18,6 +18,7 @@ logs/
 # Sensitive data
 *secret*
 *password*
+*vault*
 
 # Output files
 output/

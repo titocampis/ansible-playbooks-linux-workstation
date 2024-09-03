@@ -57,6 +57,7 @@ b4syk_shell_block: |
     \n# Sensitive data
     *secret*
     *password*
+    *vault*
     \n# Output files
     output/
     \n# IDEs config files
