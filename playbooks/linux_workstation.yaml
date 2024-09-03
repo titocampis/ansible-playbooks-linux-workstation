@@ -3,10 +3,10 @@
   become: true
 
   vars:
-    base_gitconfig_email: "andreasscorelli@gmail.com"
-    base_gitconfig_username: "titocampis"
-    base_docker_enabled: true
-    base_terraform_enabled: true
+    b4syk_gitconfig_email: "andreasscorelli@gmail.com"
+    b4syk_gitconfig_username: "titocampis"
+    b4syk_docker_enabled: true
+    b4syk_terraform_enabled: false
 
   vars_files:
     - ../general_vars.yaml
@@ -18,4 +18,4 @@
   #       var: ansible_user_id
 
   roles:
-    - "base"
+    - "b4syk"

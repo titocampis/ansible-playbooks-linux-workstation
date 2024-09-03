@@ -3,11 +3,11 @@
 ###########################################
 setw -g mode-keys vi
 
-{% if base_tmux_key | lower != 'b' %}
-# bind to Ctrl-{{ base_tmux_key }} instead o Ctrl-b
-set-option -g prefix C-{{ base_tmux_key }}
+{% if b4syk_tmux_key | lower != 'b' %}
+# bind to Ctrl-{{ b4syk_tmux_key }} instead o Ctrl-b
+set-option -g prefix C-{{ b4syk_tmux_key }}
 unbind C-b
-bind-key C-{{ base_tmux_key }} last-window
+bind-key C-{{ b4syk_tmux_key }} last-window
 {% endif %}
 
 setw -g monitor-activity on

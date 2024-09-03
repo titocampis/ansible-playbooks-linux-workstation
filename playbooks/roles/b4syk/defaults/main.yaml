@@ -1,8 +1,8 @@
 # General Variable
-base_ansible_managed: "WARNING: This file is managed by Ansible. Any changes will be overwritten."
+b4syk_ansible_managed: "{{ ancible_managed }}"
 
 # Ensure Packages Installed
-base_packages:
+b4syk_packages:
   - apt-transport-https
   - bash-completion
   - ca-certificates
@@ -11,18 +11,20 @@ base_packages:
   - htop
   - iotop
   - mysql-client
+  - mtr
   - netcat
   - nmap
   - software-properties-common
   - python3
   - python3-pip
+  - sshpass
   - sl
   - tmux
   - vim
 
 # Shell config
-base_shell: ".zshrc" # .zshrc / .bashrc
-base_shell_block: |
+b4syk_shell: ".zshrc" # .zshrc / .bashrc
+b4syk_shell_block: |
     # Ignore duplicate in history
     setopt HIST_IGNORE_DUPS
 
@@ -90,18 +92,18 @@ base_shell_block: |
     # Git aliases --> Configured in ~/.gitconfig
 
 # Gitconfig
-base_gitconfig_email: ""
-base_gitconfig_username: ""
+b4syk_gitconfig_email: ""
+b4syk_gitconfig_username: ""
 
 # Tmux
-base_tmux_key: "a"
+b4syk_tmux_key: "a"
 
 # Docker Management
-base_docker_enabled: false
-base_docker_gpg_key: "https://download.docker.com/linux/ubuntu/gpg"
-base_docker_repository: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+b4syk_docker_enabled: true
+b4syk_docker_gpg_key: "https://download.docker.com/linux/ubuntu/gpg"
+b4syk_docker_repository: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 
 # Terraform Management
-base_terraform_enabled: false
-base_terraform_hashicorp_gpg_key: "https://apt.releases.hashicorp.com/gpg"
-base_terraform_hashicorp_repository: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+b4syk_terraform_enabled: false
+b4syk_terraform_hashicorp_gpg_key: "https://apt.releases.hashicorp.com/gpg"
+b4syk_terraform_hashicorp_repository: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"

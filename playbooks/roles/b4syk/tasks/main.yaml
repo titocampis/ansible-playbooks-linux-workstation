@@ -1,0 +1,53 @@
+- name: Set fact local_user
+  ansible.builtin.import_tasks: set_facts.yaml
+  tags:
+    - b4syk
+    - b4syk_shell
+    - b4syk_git
+    - b4syk_vim
+    - b4syk_tmux
+    - b4syk_docker
+
+- name: Ensure base packages installed
+  ansible.builtin.import_tasks: packages.yaml
+  tags:
+    - b4syk
+    - b4syk_packages
+
+- name: Shell useful configuration
+  ansible.builtin.import_tasks: shell.yaml
+  tags:
+    - b4syk
+    - b4syk_shell
+
+- name: Git useful configuration
+  ansible.builtin.import_tasks: git.yaml
+  tags:
+    - b4syk
+    - b4syk_git
+
+- name: Ensure vim configuration
+  ansible.builtin.import_tasks: vim.yaml
+  tags:
+    - b4syk
+    - b4syk_vim
+
+- name: Ensure tmux installed and configured
+  ansible.builtin.import_tasks: tmux.yaml
+  tags:
+    - b4syk
+    - b4syk_tmux
+
+- name: Ensure docker installed, configured and running
+  ansible.builtin.import_tasks: docker.yaml
+  tags:
+    - b4syk
+    - b4syk_docker
+  when: b4syk_docker_enabled
+
+- name: Ensure Terraform installed and configured
+  ansible.builtin.import_tasks: terraform.yaml
+  tags:
+    - b4syk
+    - b4syk_terraform
+  when: b4syk_terraform_enabled
