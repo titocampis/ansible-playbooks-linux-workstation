@@ -2,52 +2,52 @@
   ansible.builtin.import_tasks: set_facts.yaml
   tags:
     - base
-    - base-shell-config
-    - base-git-config
-    - base-vim-config
-    - base-tmux
-    - base-docker
+    - base_shell_config
+    - base_git_config
+    - base_vim_config
+    - base_tmux
+    - base_docker
 
 - name: Ensure base packages installed
   ansible.builtin.import_tasks: base_packages.yaml
   tags:
     - base
-    - base-packages
+    - base_packages
 
 - name: Shell useful configuration
   ansible.builtin.import_tasks: shell_config.yaml
   tags:
     - base
-    - base-shell-config
+    - base_shell_config
 
 - name: Git useful configuration
   ansible.builtin.import_tasks: git_config.yaml
   tags:
     - base
-    - base-git-config
+    - base_git_config
 
 - name: Ensure vim configuration
   ansible.builtin.import_tasks: vim_config.yaml
   tags:
     - base
-    - base-vim-config
+    - base_vim_config
 
 - name: Ensure tmux installed and configured
   ansible.builtin.import_tasks: tmux.yaml
   tags:
     - base
-    - base-tmux
+    - base_tmux
 
 - name: Ensure docker installed, configured and running
   ansible.builtin.import_tasks: docker.yaml
   tags:
     - base
-    - base-docker
+    - base_docker
   when: base_docker_enabled
 
 - name: Ensure Terraform installed and configured
   ansible.builtin.import_tasks: terraform.yaml
   tags:
     - base
-    - base-terraform
+    - base_terraform
   when: base_terraform_enabled

@@ -64,7 +64,7 @@ wsl --set-default-version 2
 inventories/ # Folder containing all the servers where ansible will run and its configuration.
     └── localhost.ini # Inventory with localhost to run the configuration in local machine.
 plays/ # Folder containing all the playbooks ro be executed on the hosts, we have one playbook per role.
-    ├── base.yaml # Playbook which executes the base role (basic configuration for the server).
+    ├── linux_workstation.yaml # Playbook which executes the base role (basic configuration for the server).
     └── ...
 roles/ # Folder containing all the ansible roles (tasks to be executed on the playbooks).
     └──  base/ # Tasks for basic configuration of the server (packages, pubkeys, etc.).
@@ -144,13 +144,13 @@ ansible-playbook playbook... -i .... --vault-password-file=vault_password.txt
 #### Execute the full role
 Tags: `base`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base --check
+ansible-playbook playbooks/linux_workstation.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base --check
 ```
 
 #### Ensure base packages installed
 Tags: `base-packages`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-packages --check
+ansible-playbook playbooks/linux_workstation.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-packages --check
 ```
 
 #### Configure useful topics on your favourite shell
@@ -159,7 +159,7 @@ ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-passwo
 
 Tags: `base-shell-config`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-shell-config --check
+ansible-playbook playbooks/linux_workstation.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-shell-config --check
 ```
 
 #### Configure ohmyzsh and ~/.zshrc
@@ -168,13 +168,13 @@ We don't have ansible playbook, sorry. We think with this documentation it will 
 #### Configure vim
 Tags: `base-vim-config`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-vim-config --check
+ansible-playbook playbooks/linux_workstation.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-vim-config --check
 ```
 
 #### Ensure and configure tmux
 Tags: `base-tmux`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-tmux --check
+ansible-playbook playbooks/linux_workstation.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-tmux --check
 ```
 
 #### Ensure docker installed, configured, enabled and started
@@ -183,7 +183,7 @@ ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-passwo
 
 Tags: `base-docker`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-docker --check
+ansible-playbook playbooks/linux_workstation.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-docker --check
 ```
 
 #### Ensure and configure terraform
@@ -192,7 +192,7 @@ ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-passwo
 
 Tags: `base-terraform`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-terraform --check
+ansible-playbook playbooks/linux_workstation.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-terraform --check
 ```
 
 #### More
