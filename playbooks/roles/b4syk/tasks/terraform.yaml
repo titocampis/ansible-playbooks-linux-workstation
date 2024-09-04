@@ -5,12 +5,12 @@
 
 - name: Terraform | Ensure HashiCorp GPG key
   ansible.builtin.apt_key:
-    url: "{{ base_terraform_hashicorp_gpg_key }}"
+    url: "{{ b4syk_terraform_hashicorp_gpg_key }}"
     state: present
 
 - name: Terraform | Ensure HashiCorp APT repository
   ansible.builtin.apt_repository:
-    repo: "{{ base_terraform_hashicorp_repository }}"
+    repo: "{{ b4syk_terraform_hashicorp_repository }}"
     state: present
 
 - name: Terraform | Update the apt package index

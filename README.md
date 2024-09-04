@@ -64,16 +64,16 @@ wsl --set-default-version 2
 inventories/ # Folder containing all the servers where ansible will run and its configuration.
     └── localhost.ini # Inventory with localhost to run the configuration in local machine.
 plays/ # Folder containing all the playbooks ro be executed on the hosts, we have one playbook per role.
-    ├── base.yaml # Playbook which executes the base role (basic configuration for the server).
+    ├── linux_workstation.yaml # Playbook which executes the base role (basic configuration for the server).
     └── ...
-roles/ # Folder containing all the ansible roles (tasks to be executed on the playbooks).
-    └──  base/ # Tasks for basic configuration of the server (packages, pubkeys, etc.).
-          ├── defaults/main.yaml # Default configuration for the role.
-          ├── tasks/
-                ├── base_packages.yaml # Task to ensure the base packages installed.
-                ├── main.yaml # File containing the configuration for all the tasks and how to use them.
-                └──  ...
-          └── ...
+    roles/ # Folder containing all the ansible roles (tasks to be executed on the playbooks).
+        └──  b4syk/ # Tasks for basic configuration of the server (packages, pubkeys, etc.).
+            ├── defaults/main.yaml # Default configuration for the role.
+            ├── tasks/
+                    ├── b4syk_packages.yaml # Task to ensure the base packages installed.
+                    ├── main.yaml # File containing the configuration for all the tasks and how to use them.
+                    └──  ...
+            └── ...
 .ansible-lint # File to exclude warnings/errors when ansible-lint.
 .gitignore # File including all the files and folder to not push into git.
 .pre-commit-config.yaml # File to run hooks to check code when git commit.
@@ -142,57 +142,57 @@ ansible-playbook playbook... -i .... --vault-password-file=vault_password.txt
 ## Launching base ansible playbook
 
 #### Execute the full role
-Tags: `base`
+Tags: `b4syk`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base --check
+ansible-playbook playbooks/linux_workstation.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags b4syk --check
 ```
 
 #### Ensure base packages installed
-Tags: `base-packages`
+Tags: `b4syk_packages`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-packages --check
+ansible-playbook playbooks/linux_workstation.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags b4syk_packages --check
 ```
 
 #### Configure useful topics on your favourite shell
-1. Configure your favorite shell on the playbook the var `base_shell: <your_favourite_shell>` (by default it is `base_shell: '.zshrc'`)
+1. Configure your favorite shell on the playbook the var `b4syk_shell: <your_favourite_shell>` (by default it is `b4syk_shell: '.zshrc'`)
 2. Launch the playbook:
 
-Tags: `base-shell-config`
+Tags: `b4syk_shell`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-shell-config --check
+ansible-playbook playbooks/linux_workstation.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags b4syk_shell --check
 ```
 
 #### Configure ohmyzsh and ~/.zshrc
 We don't have ansible playbook, sorry. We think with this documentation it will be really straight-forward: [README_ohmyzsh.md](README_ohmyzsh.md)
 
 #### Configure vim
-Tags: `base-vim-config`
+Tags: `b4syk_vim`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-vim-config --check
+ansible-playbook playbooks/linux_workstation.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags b4syk_vim --check
 ```
 
 #### Ensure and configure tmux
-Tags: `base-tmux`
+Tags: `b4syk_tmux`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-tmux --check
+ansible-playbook playbooks/linux_workstation.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags b4syk_tmux --check
 ```
 
 #### Ensure docker installed, configured, enabled and started
-1. Configure on your playbook the var `base_docker_enabled: true`
+1. Configure on your playbook the var `b4syk_docker_enabled: true`
 2. Launch the playbook:
 
-Tags: `base-docker`
+Tags: `b4syk_docker`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-docker --check
+ansible-playbook playbooks/linux_workstation.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags b4syk_docker --check
 ```
 
 #### Ensure and configure terraform
-1. Configure on your playbook the var `base_terraform_enabled: true`
+1. Configure on your playbook the var `b4syk_terraform_enabled: true`
 2. Launch the playbook
 
-Tags: `base-terraform`
+Tags: `b4syk_terraform`
 ```bash
-ansible-playbook playbooks/base.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags base-terraform --check
+ansible-playbook playbooks/linux_workstation.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags b4syk_terraform --check
 ```
 
 #### More

@@ -1,4 +1,4 @@
 - name: Packages | Ensure base packages installed
   ansible.builtin.apt:
-    name: "{{ base_packages }}"
+    name: "{{ b4syk_packages }}"
     update_cache: true
