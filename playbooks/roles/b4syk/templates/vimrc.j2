@@ -1,7 +1,6 @@
 "
-" {{ b4syk_ansible_managed }}
+" {{ ansible_managed }}
 "
-
 " This file contains the configuration for the vim editor
 
 " Disable compatibility with vi which can cause unexpected issues.
@@ -11,18 +10,15 @@ set nocompatible
 filetype on
 
 " Enable plugins and load plugin for the detected file type.
-filetype plugin on
+filetype plugin indent on
 
 " Set the colorscheme to default
-colorscheme default
-
-" Load an indent file for the detected file type.
-filetype indent on
+colorscheme desert
 
 " Set authomatic indentation
-" set autoindent
+set autoindent
 
-" Turn syntax highlightin
+" Turn syntax highlighting
 syntax on
 
 " Add numbers to each line on the left-hand side.
@@ -34,11 +30,11 @@ set cursorline
 " Highlight cursor line underneath the cursor vertically.
 set cursorcolumn
 
-" Set shift width to 4 spaces.
-set shiftwidth=4
+" Set shift width to 2 spaces.
+set shiftwidth=2
 
-" Set tab width to 4 columns.
-set tabstop=4
+" Set tab width to 2 columns.
+set tabstop=2
 
 " Use space characters instead of tabs.
 set expandtab
@@ -49,8 +45,9 @@ set showmatch
 " While searching though a file incrementally highlight matching characters as you type.
 set incsearch
 
-" Ignore capital letters during search.
+" Ignore capital letters during search unless you use capital letters to search.
 set ignorecase
+set smartcase
 
 " Use highlighting when doing a search.
 set hlsearch
