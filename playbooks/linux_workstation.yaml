@@ -9,7 +9,6 @@
     b4syk_terraform_enabled: false
 
   vars_files:
-    - ../general_vars.yaml
     - ../vault.yaml
 
   # tasks:
