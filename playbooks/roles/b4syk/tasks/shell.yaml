@@ -3,3 +3,12 @@
     path: "/home/{{ local_user }}/{{ b4syk_shell }}"
     block: "{{ b4syk_shell_block }}"
     state: present
+
+- name: Shell | Red superchachi format for root and ls with colors
+  ansible.builtin.blockinfile:
+    path: "/root/.bashrc"
+    block: |
+      # Root user in red
+      PS1='\[\033[0;31m\]\u@\h\[\033[0m\]:\[\033[1;34m\]\w\[\033[0m\]\$ '
+      # alias ls='ls --color=auto'
+    state: present
