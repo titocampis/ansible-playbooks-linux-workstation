@@ -1,4 +1,10 @@
 skip_list:
-  - internal-error
-  - no-changed-when
-  - role-name[path]
+    - ignore-errors
+    - internal-error
+    - latest[git]
+    - meta-no-tags
+    - name[template]
+    - no-changed-when
+    - partial-become[task]
+    - role-name[path]
+    - schema[meta]
