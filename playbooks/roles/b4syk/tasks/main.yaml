@@ -7,6 +7,7 @@
     - b4syk_vim
     - b4syk_tmux
     - b4syk_docker
+    - b4syk_fzf
 
 - name: Ensure base packages installed
   ansible.builtin.import_tasks: packages.yaml
@@ -51,3 +52,9 @@
     - b4syk
     - b4syk_terraform
   when: b4syk_terraform_enabled
+
+- name: Ensure Fuzzy Finder installed and configured for history
+  ansible.builtin.import_tasks: fzf.yaml
+  tags:
+    - b4syk
+    - b4syk_fzf
