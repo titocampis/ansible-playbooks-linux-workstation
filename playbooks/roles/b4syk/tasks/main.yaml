@@ -4,6 +4,7 @@
     - b4syk
     - b4syk_shell
     - b4syk_git
+    - b4syk_nvim
     - b4syk_vim
     - b4syk_tmux
     - b4syk_docker
@@ -32,6 +33,12 @@
   tags:
     - b4syk
     - b4syk_vim
+      
+- name: Ensure nvim configuration
+  ansible.builtin.import_tasks: nvim.yaml
+  tags:
+    - b4syk
+    - b4syk_nvim
 
 - name: Ensure tmux installed and configured
   ansible.builtin.import_tasks: tmux.yaml
