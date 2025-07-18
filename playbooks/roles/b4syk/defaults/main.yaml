@@ -26,9 +26,6 @@ b4syk_shell_block: |
     # Export nvim from the extraction path
     export PATH="$PATH:{{ b4syk_nvim_extract_path }}/bin"
 
-    # Ignore duplicate in history
-    setopt HIST_IGNORE_DUPS
-
     # Vim aliases
     alias svim='sudo -E vim'
 
