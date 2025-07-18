@@ -40,6 +40,12 @@
     - b4syk
     - b4syk_nvim
 
+- name: Ensure sudo users and visudo
+  ansible.builtin.import_tasks: sudoers.yaml
+  tags:
+    - b4syk
+    - b4syk_sudoers
+
 - name: Ensure tmux installed and configured
   ansible.builtin.import_tasks: tmux.yaml
   tags:

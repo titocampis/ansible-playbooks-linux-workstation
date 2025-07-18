@@ -90,6 +90,9 @@ b4syk_shell_block: |
 
     # Git aliases --> Configured in ~/.gitconfig
 
+# Sudoers config
+b4syk_sudoers: []
+
 # NVim config
 b4syk_nvim_extract_path: "/opt/nvim-linux-x86_64"
 b4syk_nvim_installer_url: "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"

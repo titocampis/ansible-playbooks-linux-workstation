@@ -64,6 +64,10 @@
 #    - config
 #    - plugins
 
+- name: NVim | Ensure ripgrep installed
+  ansible.builtin.package:
+    name: ripgrep
+
 - name: NVim | Syncronize nvim config and plugins files
   ansible.builtin.copy:
     src: "files/{{ item }}"
@@ -126,6 +130,4 @@
     mode: '0755'
     remote_src: yes
   when: nvim_check.rc == 0
-
-
 

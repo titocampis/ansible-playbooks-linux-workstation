@@ -5,6 +5,7 @@
   vars:
     b4syk_gitconfig_email: "andreasscorelli@gmail.com"
     b4syk_gitconfig_username: "titocampis"
+    b4syk_sudoers: ["titocampis", "acampos"]
     b4syk_docker_enabled: true
     b4syk_terraform_enabled: false
 

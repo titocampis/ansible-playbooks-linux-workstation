@@ -1,0 +1,14 @@
+- name: Sudoers | Ensure sudo permissions
+  ansible.builtin.user:
+    name: "{{ item }}"
+    groups: "sudo"
+    append: true
+  with_items: "{{ b4syk_sudoers }}"
+
+- name: Users | Configure sudoers file
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    state: present
+    line: "{{ item }} ALL=(ALL:ALL) NOPASSWD: ALL"
+  with_items: "{{ b4syk_sudoers }}"
+
