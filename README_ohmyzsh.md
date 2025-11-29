@@ -8,7 +8,27 @@ The official documentation: [https://ohmyz.sh/](https://ohmyz.sh/)
 One documentation very good explained: [https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/](https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/)
 
 ## Terminal Configuration
-:one: Open the `~/.zshrc` file and include
+:one: Update and upgrade the system
+```bash
+sudo apt update && apt upgrade
+```
+
+:two: Install zsh
+```bash
+sudo apt install zsh
+```
+
+:three: Change default shell to zsh
+```bash
+chsh -s $(which zsh)
+```
+
+:four: Install `oh-my-zsh`
+```bash
+sh -c "$wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+```
+
+:five: Open the `~/.zshrc` file and include
 ```bash
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -31,35 +51,37 @@ plugins=(
     zsh-autosuggestions
     zsh-syntax-highlighting
     history
-        sudo
-        web-search
-        copypath
-        copyfile
+    sudo
+    web-search
+    copypath
+    copyfile
 )
 
 source $ZSH/oh-my-zsh.sh
 ```
 
-You will face the following error, don't panic
+> In WSL you will face the following error, don't panic
+> 
+>  ![alt text](pictures/image.png)
+> 
+> Create the `.dircolors` file into your home directory
+> ```bash
+> wget https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.ansi-dark -O ~/.dircolors
+> ```
+> 
 
-![alt text](pictures/image.png)
-
-:two: Create the `.dircolors` file into your home directory
-```bash
-wget https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.ansi-dark -O ~/.dircolors
-```
-
-:three: Clone the `zsh-autosuggestions` in the folder `~/.oh-my-zsh/custom/plugins/`
+:six: Clone the `zsh-autosuggestions` in the folder `~/.oh-my-zsh/custom/plugins/`
 ```bash
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 ```
 
-:four: :three: Clone the `zsh-zsh-syntax-highlighting` in the folder `~/.oh-my-zsh/custom/plugins/`
+:seven: Clone the `zsh-zsh-syntax-highlighting` in the folder `~/.oh-my-zsh/custom/plugins/`
 ```bash
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-```
+``` 
 
-## Installing missing Powerline Fonts
+## Installing Nerd Fonts
+### For WSL
 :one: Clone the powerline repository in your wsl
 ```bash
 git clone https://github.com/powerline/fonts.git
@@ -93,3 +115,16 @@ Enable `Show All Fonts` and configure one with requirements for `ohmyzsh`:
 ![alt text](pictures/image4.png)
 
 Enjoy your `ohmyszh`!
+
+### For Ubuntu 22.04
+:one: Install Nerd Fonts
+```bash
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts
+unzip Meslo.zip
+fc-cache -fv
+```
+
+:two: Restart terminal
+
+:three: Change the font configured in the terminal by one with `Nerd`.
