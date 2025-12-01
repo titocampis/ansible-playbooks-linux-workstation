@@ -1,0 +1,7 @@
+- name: Set Facts | Get system user
+  ansible.builtin.set_fact:
+    local_user: "{{ lookup('env', 'USER') }}"
+
+- name: Set Facts | Print system user
+  ansible.builtin.debug:
+    msg: "System user: {{ local_user }}"

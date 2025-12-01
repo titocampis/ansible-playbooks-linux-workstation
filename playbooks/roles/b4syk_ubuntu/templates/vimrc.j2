@@ -1,0 +1,76 @@
+"
+" {{ ansible_managed }}
+"
+
+" This file contains the configuration for the vim editor
+
+" Disable compatibility with vi which can cause unexpected issues.
+set nocompatible
+
+" Enable type file detection. Vim will be able to try to detect the type of file in use.
+filetype on
+
+" Enable plugins and load plugin for the detected file type.
+filetype plugin indent on
+
+" Set the colorscheme to default
+colorscheme desert
+
+" Set authomatic indentation
+" set smartindent
+
+" Turn syntax highlighting
+syntax on
+
+" Add line number + relative.
+set number
+set relativenumber
+
+" Highlight cursor line underneath the cursor horizontally.
+set cursorline
+
+" Highlight cursor line underneath the cursor vertically.
+set cursorcolumn
+
+" Set shift width to 2 spaces.
+set shiftwidth=2
+
+" Set tab width to 2 columns.
+set tabstop=2
+
+" Use space characters instead of tabs.
+set expandtab
+
+" Colorful (),[],{}
+set showmatch
+
+" While searching though a file incrementally highlight matching characters as you type.
+set incsearch
+
+" Ignore capital letters during search unless you use capital letters to search.
+set ignorecase
+set smartcase
+
+" Use highlighting when doing a search.
+set hlsearch
+
+" Enable auto completion menu after pressing TAB.
+set wildmenu
+
+" Make wildmenu behave like similar to Bash completion.
+set wildmode=list:longest
+
+" Yank from vim to clipboard
+let s:clip = '/mnt/c/Windows/System32/clip.exe'
+if executable(s:clip)
+  augroup WSLYank
+    autocmd!
+    autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+  augroup END
+endif
+
+" Enable black theme
+" set background=dark
+
+" Tab helper
+" set smarttab

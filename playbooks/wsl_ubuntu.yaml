@@ -1,0 +1,20 @@
+- name: Playbook to configure basis on work Ubuntu machine (WSL)
+  hosts: localhost
+  become: true
+
+  vars:
+    b4syk_gitconfig_email: "andreasscorelli@gmail.com"
+    b4syk_gitconfig_username: "titocampis"
+    b4syk_docker_enabled: true
+    b4syk_terraform_enabled: false
+
+  vars_files:
+    - ../vault.yaml
+
+  # tasks:
+  #   - name: Debug test_var
+  #     ansible.builtin.debug:
+  #       var: ansible_user_id
+
+  roles:
+    - "b4syk"

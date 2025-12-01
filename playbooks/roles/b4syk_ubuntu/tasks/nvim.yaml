@@ -1,0 +1,133 @@
+- name: NVim | Check if nvim is installed
+  ansible.builtin.command: command -v nvim
+  register: nvim_check
+  changed_when: false
+  failed_when: false
+
+- name: NVim | Uninstall if it exists
+  ansible.builtin.apt:
+    name: neovim
+    state: absent
+  when: nvim_check.rc == 0
+
+- name: NVim | Ensure nvim extraction folder exists
+  ansible.builtin.file:
+    path: "{{ b4syk_nvim_extract_path }}"
+    state: "directory"
+    owner: root
+    group: root
+    mode: "755"
+
+- name: NVim | Download nvim Core tarball in /tmp
+  ansible.builtin.get_url:
+    url: "{{ b4syk_nvim_installer_url }}"
+    dest: "/tmp/nvim-linux-x86_64.tar.gz"
+
+- name: NVim | Extract nvim Core tarball from /tmp to {{ b4syk_nvim_extract_path }}
+  ansible.builtin.unarchive:
+    src: "/tmp/nvim-linux-x86_64.tar.gz"
+    dest: "{{ b4syk_nvim_extract_path  }}"
+    remote_src: yes
+
+- name: NVim | Ensure /home/{{ local_user }}/.config dir exists
+  ansible.builtin.file:
+    path: "/home/{{ local_user }}/.config"
+    state: directory
+    owner: "{{ local_user }}"
+    group: "{{ local_user }}"
+    mode: "0700"
+
+- name: NVim | Ensure /home/{{ local_user }}/.config/nvim dir exists
+  ansible.builtin.file:
+    path: "/home/{{ local_user }}/.config/nvim"
+    state: directory
+    owner: "{{ local_user }}"
+    group: "{{ local_user }}"
+    mode: "0755"
+
+- name: NVim | Ensure /home/{{ local_user }}/.config/nvim/lua dir exists
+  ansible.builtin.file:
+    path: "/home/{{ local_user }}/.config/nvim/lua"
+    state: directory
+    owner: "{{ local_user }}"
+    group: "{{ local_user }}"
+    mode: "0755"
+      
+#- name: NVim | Ensure /home/{{ local_user }}/.config/nvim/lua internal dirs exist
+#  ansible.builtin.file:
+#    path: "/home/{{ local_user }}/.config/nvim/lua/{{ item }}"
+#    state: directory
+#    owner: "{{ local_user }}"
+#    group: "{{ local_user }}"
+#    mode: "0755"
+#  with_items:
+#    - config
+#    - plugins
+
+- name: NVim | Ensure ripgrep installed
+  ansible.builtin.package:
+    name: ripgrep
+
+- name: NVim | Syncronize nvim config and plugins files
+  ansible.builtin.copy:
+    src: "files/{{ item }}"
+    dest: "/home/{{ local_user }}/.config/nvim/lua"
+    owner: "{{ local_user }}"
+    group: "{{ local_user }}"
+    mode: "0755"
+  with_items:
+    - config
+    - plugins
+
+- name: NVim | Configure nvim in lua
+  ansible.builtin.template:
+    src: "vim-options.lua.j2"
+    dest: "/home/{{ local_user }}/.config/nvim/lua/vim-options.lua"
+    owner: "{{ local_user }}"
+    mode: "0644"
+
+- name: NVim | Configure init.lua
+  ansible.builtin.template:
+    src: "init.lua.j2"
+    dest: "/home/{{ local_user }}/.config/nvim/init.lua"
+    owner: "{{ local_user }}"
+    mode: "0644"
+
+- name: NVim | Set fact to se if win32yank is installed
+  ansible.builtin.command: ls -la /usr/local/bin/win32yank.exe
+  register: win32yank_check
+  changed_when: false
+  failed_when: false
+
+- name: NVim | Ensure yank wsl extraction folder exists
+  ansible.builtin.file:
+    path: "/tmp/win32yank"
+    state: "directory"
+    owner: root
+    group: root
+    mode: "644"
+  when: nvim_check.rc == 0
+
+- name: NVim | Download zip to yank form wsl
+  ansible.builtin.get_url:
+    url: "https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip"
+    dest: "/tmp/win32yank.zip"
+  when: nvim_check.rc == 0
+
+- name: NVim | Unzip win32yank.exe from archive
+  ansible.builtin.unarchive:
+    src: "/tmp/win32yank.zip"
+    dest: "/tmp/win32yank"
+    remote_src: yes
+  when: nvim_check.rc == 0
+
+- name: NVim | Copy file from /tmp into /usr/local/bin 
+  ansible.builtin.copy:
+    src: /tmp/win32yank/win32yank.exe
+    dest: /usr/local/bin/win32yank.exe
+    owner: root
+    group: root
+    mode: '0755'
+    remote_src: yes
+  when: nvim_check.rc == 0
+

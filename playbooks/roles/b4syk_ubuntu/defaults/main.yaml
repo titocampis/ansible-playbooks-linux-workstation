@@ -1,0 +1,141 @@
+# Ensure Packages Installed
+b4syk_packages:
+  - apt-transport-https
+  - bash-completion
+  - ca-certificates
+  - curl
+  - dnsutils
+  - gimp
+  - htop
+  - iotop
+  - keepassxc
+  - libreoffice
+  - mysql-client
+  - mtr
+ #  - netcat # included in apt-transport-https
+  - nmap
+  - rsync
+  - software-properties-common
+  - python3
+  - python3-pip
+  - sshpass
+  - sl
+  - tmux
+  - vim
+  - vlc
+
+# Other packages to install manually
+# - google chrome
+#   $ wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+#   $ echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list
+#   $ apt update
+#   $ apt upgade
+#   $ apt install google-chrome-stable
+#
+# - vscode
+#   https://code.visualstudio.com/docs/setup/linux
+#
+# - brave
+#   $ curl -fsS https://dl.brave.com/install.sh | sh
+#
+# - bitwarden --> web
+
+# Shell config
+b4syk_shell: "zsh" # zsh / bash
+b4syk_shell_ohmyzsh: True
+b4syk_shell_ohmyzsh_nerdfonts_release: "v3.2.1"
+b4syk_shell_block: |
+    # Export nvim from the extraction path
+    export PATH="$PATH:{{ b4syk_nvim_exec_path }}/bin"
+
+    # Vim aliases
+    alias svim='sudo -E vim'
+
+    # Docker aliases
+    alias docker-rm-all='docker rm -f $(docker ps -aq)'
+    alias docker-prune-all='docker container prune -f && docker image prune -f'
+
+    # Kubectl aliases
+    alias kc='kubectl'
+    alias kcc='kubectl config'
+
+    # Terraform alias
+    alias tf='terraform'
+
+    # Show custom .gitignore
+    alias show-gitignore='echo -e "#\n# Alex default .gitignore, any manual change will be overwritten.\n#\n
+    # General untracked
+    __pycache__/
+    backup/
+    *venv*
+    \n# Environment variable files
+    .env
+    .env.*
+    \n# Log files
+    logs/
+    *.log
+    \n# Sensitive data
+    *secret*
+    *password*
+    *vault*
+    \n# Output files
+    output/
+    \n# IDEs config files
+    .vscode/
+    .idea/
+    "'
+
+    # Show custom .dockerignore
+    alias show-dockerignore='echo -e "#\n# Alex default .dockerignore, any manual change will be overwritten.\n#\n
+    # General untracked
+    __pycache__/
+    .gitignore
+    backup/
+    *Dockerfile*
+    docker-compose*
+    README*
+    old/
+    unused/
+    *venv*
+    \n# Environment variable files
+    .env
+    .env.*
+    \n# Log files
+    logs/
+    *.log
+    \n# Sensitive data
+    *secret*
+    *password*
+    "'
+
+    # SSH config --> ~/.ssh/config
+
+    # Git aliases --> Configured in ~/.gitconfig
+
+# Sudoers config
+b4syk_sudoers: []
+
+# NVim config
+b4syk_nvim_enabled: True
+b4syk_nvim_extract_path: "/opt"
+b4syk_nvim_exec_path: "{{ b4syk_nvim_extract_path }}/nvim-linux-x86_64"
+b4syk_nvim_installer_url: "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
+
+# Gitconfig
+b4syk_gitconfig_email: ""
+b4syk_gitconfig_username: ""
+
+# Tmux
+b4syk_tmux_key: "a"
+
+# CopyQ
+
+# Docker Management
+b4syk_docker_enabled: true
+b4syk_docker_gpg_key: "https://download.docker.com/linux/ubuntu/gpg"
+b4syk_docker_repository: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+# Terraform Management
+b4syk_terraform_enabled: false
+b4syk_terraform_hashicorp_gpg_key: "https://apt.releases.hashicorp.com/gpg"
+b4syk_terraform_hashicorp_repository: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"

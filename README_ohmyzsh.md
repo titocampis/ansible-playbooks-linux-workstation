@@ -57,7 +57,6 @@ plugins=(
     copyfile
 )
 
-source $ZSH/oh-my-zsh.sh
 ```
 
 > In WSL you will face the following error, don't panic
