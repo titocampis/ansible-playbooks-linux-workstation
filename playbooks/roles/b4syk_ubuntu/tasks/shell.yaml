@@ -111,6 +111,16 @@
     - b4syk_shell == 'zsh'
     - b4syk_shell_ohmyzsh
 
+- name: Shell | Triggering Oh-My-Zsh informative handler
+  ansible.builtin.debug:
+    msg: "Triggering handler"
+  changed_when: true
+  notify: Install and configure ohmyzsh plugins
+  when: 
+    - b4syk_shell == 'zsh'
+    - b4syk_shell_ohmyzsh
+
+# Remember to change the text font to a Nerd one in the Terminal Gnome Configuration. 
 # On ohmyzsh you can configure the pluggins as you wish
 # plugins=(
 #     git

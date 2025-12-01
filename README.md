@@ -4,7 +4,28 @@ Welcome to the Linux Workstation Configuration with Ansible! This repository is 
 
 For now, the only workstation distro available is `Ubuntu` for WSL or for a Linux host.
 
+Read this document carefully if you are going to use it to configure your Linux Workstation. Read as well one of the following, depending of the platform you are using:
+- **Ubuntu Host:** (README_ubuntu.md)[README_ubuntu.md]
+- **WSL:** (README_wsl.md)[README_wsl.md]
+
+## Index
+
+This index lists the main sections on this page for quick navigation:
+
+- [Ansible Playbooks to configure Linux Workstation :tophat:](#ansible-playbooks-to-configure-linux-workstation-tophat)
+  - [Index](#index)
+  - [Project Structure](#project-structure)
+  - [Previous Steps before executing Ansible Playbooks](#previous-steps-before-executing-ansible-playbooks)
+  - [Sensitive Data managed by Ansible vault](#sensitive-data-managed-by-ansible-vault)
+  - [Launching base ansible playbook](#launching-base-ansible-playbook)
+      - [Execute the full role](#execute-the-full-role)
+      - [Ensure base packages installed](#ensure-base-packages-installed)
+      - [Configure useful topics on your favourite shell](#configure-useful-topics-on-your-favourite-shell)
+      - [More](#more)
+
+
 ## Project Structure
+
 ```bash
 inventories/ # Folder containing all the servers where ansible will run and its configuration.
     └── localhost.ini # Inventory with localhost to run the configuration in local machine.
@@ -31,8 +52,8 @@ plays/ # Folder containing all the playbooks ro be executed on the hosts, we hav
 .gitignore # File including all the files and folder to not push into git.
 .pre-commit-config.yaml # File to run hooks to check code when git commit.
 general_vars.yaml # File for generic vars in all the playbook.
-README_ohmyzsh.md # Documentation of how to install and configure ohmyzsh.
-README_wsl.md # Install WSL Config.
+README_wsl.md # Extra documentation for WSL configuration.
+README_ubuntu.md # Extra documentation for Ubuntu configuration.
 ```
 
 ## Previous Steps before executing Ansible Playbooks
@@ -51,7 +72,7 @@ pip3 install python3-pip
 sudo apt install ansible
 ```
 
-# Sensitive Data managed by Ansible vault
+## Sensitive Data managed by Ansible vault
 To store the Ansible Sensitive Data we use [Ansible vault](https://docs.ansible.com/ansible/latest/vault_guide/index.html).
 
 > [!TIP]
@@ -114,9 +135,6 @@ Tags: `b4syk_shell`
 ```bash
 ansible-playbook playbooks/<playbook_name>.yaml -i inventories/localhost.ini --vault-password-file=vault_password.txt --diff --tags b4syk_shell --check
 ```
-
-#### Configure ohmyzsh and ~/.zshrc
-We don't have ansible playbook, sorry. We think with this documentation it will be really straight-forward: [README_ohmyzsh.md](README_ohmyzsh.md)
 
 #### More
 To check more available tasks check [roles/base/tasks/main.yaml](roles/base/tasks/main.yaml)

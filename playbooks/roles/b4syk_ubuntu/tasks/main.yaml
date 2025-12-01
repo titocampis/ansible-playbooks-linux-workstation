@@ -2,6 +2,7 @@
   ansible.builtin.import_tasks: set_facts.yaml
   tags:
     - b4syk
+    - b4syk_copyq
     - b4syk_shell
     - b4syk_git
     - b4syk_nvim
@@ -10,11 +11,11 @@
     - b4syk_docker
     - b4syk_fzf
 
-# - name: Ensure base packages installed
-#   ansible.builtin.import_tasks: packages.yaml
-#   tags:
-#     - b4syk
-#     - b4syk_packages
+- name: Ensure base packages installed
+  ansible.builtin.import_tasks: packages.yaml
+  tags:
+    - b4syk
+    - b4syk_packages
 
 - name: Shell useful configuration
   ansible.builtin.import_tasks: shell.yaml
@@ -71,3 +72,17 @@
   tags:
     - b4syk
     - b4syk_fzf
+
+- name: Ensure CopyQ installed and configured to autostart
+  ansible.builtin.import_tasks: copyq.yaml
+  tags:
+    - b4syk
+    - b4syk_copyq
+  when: b4syk_copyq_enabled
+
+- name: Ensure BT disabled when boot
+  ansible.builtin.import_tasks: bt_disabled.yaml
+  tags:
+    - b4syk
+    - b4syk_bt
+  when: b4syk_bt_boot_disabled

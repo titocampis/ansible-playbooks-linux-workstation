@@ -13,6 +13,7 @@ b4syk_packages:
   - mysql-client
   - mtr
  #  - netcat # included in apt-transport-https
+  - ncdu
   - nmap
   - rsync
   - software-properties-common
@@ -23,21 +24,12 @@ b4syk_packages:
   - tmux
   - vim
   - vlc
+  - xclip # for vim clipboard
 
-# Other packages to install manually
+# Other packages to install manually -> README.md
 # - google chrome
-#   $ wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-#   $ echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list
-#   $ apt update
-#   $ apt upgade
-#   $ apt install google-chrome-stable
-#
 # - vscode
-#   https://code.visualstudio.com/docs/setup/linux
-#
 # - brave
-#   $ curl -fsS https://dl.brave.com/install.sh | sh
-#
 # - bitwarden --> web
 
 # Shell config
@@ -116,7 +108,7 @@ b4syk_shell_block: |
 b4syk_sudoers: []
 
 # NVim config
-b4syk_nvim_enabled: True
+b4syk_nvim_enabled: true
 b4syk_nvim_extract_path: "/opt"
 b4syk_nvim_exec_path: "{{ b4syk_nvim_extract_path }}/nvim-linux-x86_64"
 b4syk_nvim_installer_url: "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
@@ -129,6 +121,10 @@ b4syk_gitconfig_username: ""
 b4syk_tmux_key: "a"
 
 # CopyQ
+b4syk_copyq_enabled: true
+
+# Disable BT boot
+b4syk_bt_boot_disabled: true
 
 # Docker Management
 b4syk_docker_enabled: true

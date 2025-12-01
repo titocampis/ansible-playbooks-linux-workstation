@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Exec=copyq
+X-GNOME-Autostart-enabled=true
+Name=CopyQ
+Comment=Start CopyQ on login

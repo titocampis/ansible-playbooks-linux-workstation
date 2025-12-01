@@ -1,0 +1,6 @@
+- name: Bluetooth| Set AutoEnable to false in Bluetooth config
+  ansible.builtin.lineinfile:
+    path: /etc/bluetooth/main.conf
+    regexp: '^\s*#?\s*AutoEnable\s*=\s*.*'
+    line: 'AutoEnable=false'
+    state: present

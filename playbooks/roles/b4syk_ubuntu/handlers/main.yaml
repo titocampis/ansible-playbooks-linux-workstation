@@ -3,3 +3,15 @@
     name: docker
     state: restarted
     enabled: true
+
+- name: Installation of other packages
+  ansible.builtin.debug:
+    msg: "To install packages like: chrome, vscode, brave or bitwarden. Check README_ubuntu.md"
+
+- name: Install and configure ohmyzsh plugins
+  ansible.builtin.debug:
+    msg: "Remember to change the text font to a Nerd one in the Terminal Gnome Configuration. To install and configure ohmyzsh plugins check README_ubuntu.md"
+
+- name: Copyq change keyboard configuration
+  ansible.builtin.debug:
+    msg: "To change the CopyQ keyboard shortcut check README_ubuntu.md"
