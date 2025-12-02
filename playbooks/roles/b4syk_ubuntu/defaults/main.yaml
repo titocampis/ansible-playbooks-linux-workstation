@@ -10,6 +10,8 @@ b4syk_packages:
   - iotop
   - keepassxc
   - libreoffice
+  - hunspell-es # es dictionary for spell checking
+  - hunspell-ca # cat dictionary for spell checking
   - mysql-client
   - mtr
  #  - netcat # included in apt-transport-https
