@@ -15,7 +15,8 @@ This index lists the main sections on this page for quick navigation:
     - [Bitwarden](#bitwarden)
   - [Oh-My-Zsh](#oh-my-zsh)
   - [Configure CopyQ keyboard shortcut](#configure-copyq-keyboard-shortcut)
-
+  - [New keys on keyboard layout](#new-keys-on-keyboard-layout)
+  - [WIP](#wip)
 
 ## Other packages to install manually
 
@@ -115,8 +116,6 @@ Clone the `zsh-zsh-syntax-highlighting` in the folder `~/.oh-my-zsh/custom/plugi
 ```bash
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 ``` 
-
-
 ## Configure CopyQ keyboard shortcut
 
 :one: Check the custom shortcuts configuration of your user:
@@ -170,3 +169,52 @@ gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings
 ```bash
 gsettings list-recursively org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/copyq/
 ```
+
+## New keys on keyboard layout
+
+> :warning: **WARNING:** This procedure can break your keyboard layout, be really careful
+
+As my laptop does not have the keys '< >', I want to type them when:
+- Alt Gr + G: >
+- Alt Gr + L: <
+
+:one: Check which `keycode` `G` and `L`have (any user):
+```bash
+xev
+```
+
+Type the key and see logs.
+
+:two: Grep the keycode to see the key number (sudo):
+```bash
+sudo grep <keycode> /usr/share/X11/xkb/keycodes/evdev
+```
+
+:three: Copy the `es` layout into `es-custom`
+```bash
+sudo cp /usr/share/X11/xkb/symbols/es /usr/share/X11/xkb/symbols/es-custom
+```
+
+:four: Edit the `es-custom` layout and replace de `3rd and 4th columns` with the desired symbol:
+```bash
+sudo vim /usr/share/X11/xkb/symbols/es-custom
+```
+```bash
+    // -------------------  Greater and less --------------------------------------------
+    key <AC09>  { [ l, L, less, Less ] };
+    key <AC05>  { [ g, G, greater, Greater ] };
+    // -------------------  Greater and less --------------------------------------------
+```
+
+:five: Apply the new layout config and pray :pray:
+```bash
+sudo setxkbmap -layout es-custom
+```
+
+> :collision: **Note:** If something went wrong, roll-back
+> ```
+> sudo setxkbmap -layout es
+> ```
+
+## WIP
+- Think about vim=nvim with aliases or install vim-gtk to have clipboard systemwide

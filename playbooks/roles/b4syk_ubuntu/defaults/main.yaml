@@ -9,9 +9,11 @@ b4syk_packages:
   - htop
   - iotop
   - keepassxc
+ # Libreoffice and dictionaries
   - libreoffice
   - hunspell-es # es dictionary for spell checking
   - hunspell-ca # cat dictionary for spell checking
+ # ---
   - mysql-client
   - mtr
  #  - netcat # included in apt-transport-https
@@ -19,8 +21,13 @@ b4syk_packages:
   - nmap
   - rsync
   - software-properties-common
+ # Install all python3 packages system wide, better in .venv but for local tests
   - python3
+  - python3-flask
+  - python3-matplotlib
+  - python3-pandas
   - python3-pip
+ # ---
   - sshpass
   - sl
   - tmux

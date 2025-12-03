@@ -4,6 +4,9 @@
 ###########################################
 setw -g mode-keys vi
 
+# Make Enter copy selection to system clipboard
+bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "xclip -selection clipboard -in"
+
 {% if b4syk_tmux_key | lower != 'b' %}
 # bind to Ctrl-{{ b4syk_tmux_key }} instead o Ctrl-b
 set-option -g prefix C-{{ b4syk_tmux_key }}
