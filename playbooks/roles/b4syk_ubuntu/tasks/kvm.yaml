@@ -8,3 +8,19 @@
       - virt-manager
     update_cache: true
 
+- name: Kvm | Ensure KVM directory exists with correct permissions
+  ansible.builtin.file:
+    path: /mnt/kvm
+    state: directory
+    owner: libvirt-qemu
+    group: kvm
+    mode: "0755"
+
+- name: Kvm | Ensure KVM/isos directory exists with correct permissions
+  ansible.builtin.file:
+    path: /mnt/kvm/isos
+    state: directory
+    owner: libvirt-qemu
+    group: kvm
+    mode: "0755"
+

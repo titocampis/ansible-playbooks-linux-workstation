@@ -216,5 +216,107 @@ sudo setxkbmap -layout es-custom
 > sudo setxkbmap -layout es
 > ```
 
+## KVM
+### Installation
+:one: Run the kvm task
+
+:two: Start downloading Ubuntu ISO:
+```bash
+wget https://releases.ubuntu.com/24.04/ubuntu-24.04.3-desktop-amd64.iso \
+    -O /mnt/kvm/isos/ubuntu-24.04.3-desktop-amd64.iso
+```
+
+:three: Change permissions of the iso
+```bash
+sudo chown libvirt-qemu:kvm /mnt/kvm/isos/ubuntu-24.04.3-live-server-amd64.iso
+sudo chmod 644 /mnt/kvm/isos/ubuntu-24.04.3-live-server-amd64.iso
+```
+
+:four: Run the `virt-manager`:
+```bash
+sudo virt-manager
+```
+
+:five: Create a new vm from and configure it:
+- ram 
+- vcpus
+- disk
+
+> We can do it manually but didn't work for me --> I think it is something related with the GUI installer
+> ---
+> :four: Create the virtual disk image file for the VM hard drive `20G`
+> ```bash
+> sudo qemu-img create -f qcow2 /mnt/kvm/ubuntu24_vm.qcow2 20G
+> ```
+> 
+> :five: Change permissions of the qcow2 file:
+> ```bash
+> sudo chown libvirt-qemu:kvm /mnt/kvm/ubuntu24_vm.qcow2
+> sudo chmod 660 /mnt/kvm/ubuntu24_vm.qcow2
+> ```
+> 
+> :six: Create the vm:
+> ```bash
+> sudo virt-install \
+> --name ubuntu24-vm \
+> --ram 4096 \
+> --vcpus 2 \
+> --cpu host \
+> --os-variant ubuntu24.04 \
+> --cdrom /mnt/kvm/isos/ubuntu-24.04.3-desktop-amd64.iso \
+> --disk path=/mnt/kvm/ubuntu24_vm.qcow2,size=20 \
+> --network network=default \
+> --graphics spice \
+> --boot cdrom,hd
+> ```
+> 
+> - `--name`: VM name.
+> - `--ram` and `--vcpus`: resources.
+> - `--cpu host`: exposes host CPU features.
+> - `--os-variant`: helps with optimization.
+> - `--cdrom`: ISO for installation.
+> - `--disk`: specify the disk.
+> - `--network`: default NAT network.
+> - `--graphics spice`: GUI console.
+> - `--boot cdrom,hd`: boot from ISO first, then disk.
+ 
+### Manage VM's
+
+#### General
+`virt-manager`: visual manager of ISOS
+`kvm -> virsh`: real manager
+`virsh list --all`: see all the running vms
+`virsh edit <vm_name>`: change the configuration of the vm
+`virsh dumpxml <vm_name>`: check xml configuration without editing 
+`virsh start <vm_name>`: start the vm
+`virsh shutdown <vm_name>`: gracefully shutdown the vm
+`virsh reboot <vm_name>`: gracefully reboot the vm
+`virsh destroy <vm_name>`: to force stop the vm
+
+#### Resize the vm disk
+:one: Check the qcow2 file
+```bash
+sudo virsh dumpxml <vm_name> | grep qcow2
+```
+or
+```bash
+qemu-img info /var/lib/libvirt/images/ubuntu24-vm.qcow2
+```
+
+It should be something like: `/var/lib/libvirt/images/ubuntu24-vm.qcow2`
+
+:two: Resize it:
+```bash
+qemu-img resize /var/lib/libvirt/images/ubuntu24-vm.qcow2
+```
+
+:three: Check the new size:
+```bash
+qemu-img info /var/lib/libvirt/images/ubuntu24-vm.qcow2
+```
+
+:four: Inside the vm --> resize the main partition
+
+
 ## WIP
 - Think about vim=nvim with aliases or install vim-gtk to have clipboard systemwide
