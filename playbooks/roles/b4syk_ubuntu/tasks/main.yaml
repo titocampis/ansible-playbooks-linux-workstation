@@ -86,3 +86,18 @@
     - b4syk
     - b4syk_bt
   when: b4syk_bt_boot_disabled
+
+- name: Ensure kvm configuration
+  ansible.builtin.import_tasks: kvm.yaml
+  tags:
+    - b4syk
+    - b4syk_kvm
+  when: b4syk_kvm_enabled
+
+- name: Ensure latex installed
+  ansible.builtin.import_tasks: latex.yaml
+  tags:
+    - b4syk
+    - b4syk_latex
+  when: b4syk_latex
+

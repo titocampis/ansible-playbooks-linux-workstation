@@ -1,0 +1,5 @@
+- name: Latex | Ensure latex installed
+  ansible.builtin.apt:
+    name: "texlive-full"
+    update_cache: true
+

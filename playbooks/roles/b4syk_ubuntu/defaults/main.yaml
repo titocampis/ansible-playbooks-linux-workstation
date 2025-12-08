@@ -144,3 +144,10 @@ b4syk_docker_repository: "deb [arch=amd64] https://download.docker.com/linux/ubu
 b4syk_terraform_enabled: false
 b4syk_terraform_hashicorp_gpg_key: "https://apt.releases.hashicorp.com/gpg"
 b4syk_terraform_hashicorp_repository: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+
+# Kvm
+b4syk_kvm_enabled: false
+
+# Latex
+b4syk_latex: true
+
