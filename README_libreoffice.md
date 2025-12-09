@@ -40,8 +40,20 @@ Sub ColorearFilasConA
     For i = 1 To UltimaFila   ' empieza en 1 para saltar títulos si tienes
 
         oCeldas = oHoja.getCellByPosition(3, i)  ' columna C → índice 2
+        oCeldas1 = oHoja.getCellByPosition(3, i) ' columna D -> indice 3
 
-        If UCase(oCeldas.String) = "A" Then
+        If UCase(oCeldas1.String) = "DONE" Then
+
+            ' Crear cursor para detectar última columna de datos en esa fila
+            oCursorFila = oHoja.createCursorByRange(oHoja.getCellbyPosition(0, i))
+            oCursorFila.gotoEndOfUsedArea(True)
+            ultimaCol = oCursorFila.RangeAddress.EndColumn
+            
+            ' Colorear hasta ultima columna con datos
+            oRango = oHoja.getCellRangeByPosition(0, i, ultimaCol, i)
+			oRango.CellBackColor = RGB(144, 238, 144)
+        
+        ElseIf UCase(oCeldas.String) = "A" Then
 
             ' Crear cursor para detectar última columna de datos en esa fila
             oCursorFila = oHoja.createCursorByRange(oHoja.getCellbyPosition(0, i))
@@ -61,7 +73,6 @@ Sub ColorearFilasConA
             oFila.CellBackColor = -1 ' sin color
 
         End If
-
     Next i
 
 End Sub
