@@ -27,6 +27,7 @@ b4syk_packages:
   - python3-matplotlib
   - python3-pandas
   - python3-pip
+  - python3-tabulate
  # ---
   - sshpass
   - sl
