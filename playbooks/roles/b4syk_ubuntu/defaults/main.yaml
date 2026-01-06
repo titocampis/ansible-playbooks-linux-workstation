@@ -5,10 +5,11 @@ b4syk_packages:
   - ca-certificates
   - curl
   - dnsutils
-  - gimp
+  - ffmpeg # audio processing
+  - gimp # img edition
   - htop
   - iotop
-  - keepassxc
+  - keepassxc # store passwords
  # Libreoffice and dictionaries
   - libreoffice
   - hunspell-es # es dictionary for spell checking
