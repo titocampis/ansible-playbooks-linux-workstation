@@ -8,6 +8,7 @@ b4syk_packages:
   - ffmpeg # audio processing
   - gimp # img edition
   - htop
+  - img2pdf
   - iotop
   - keepassxc # store passwords
  # Libreoffice and dictionaries
@@ -20,6 +21,7 @@ b4syk_packages:
  #  - netcat # included in apt-transport-https
   - ncdu
   - nmap
+  - pdfgrep
   - rsync
   - software-properties-common
  # Install all python3 packages system wide, better in .venv but for local tests
