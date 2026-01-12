@@ -10,6 +10,7 @@
     - b4syk_tmux
     - b4syk_docker
     - b4syk_fzf
+    - b4syk_pki
 
 - name: Ensure base packages installed
   ansible.builtin.import_tasks: packages.yaml
@@ -100,4 +101,10 @@
     - b4syk
     - b4syk_latex
   when: b4syk_latex
+
+- name: Ensure PKI directories
+  ansible.builtin.import_tasks: prepare-pki.yaml
+  tags:
+    - b4syk
+    - b4syk_pki
 

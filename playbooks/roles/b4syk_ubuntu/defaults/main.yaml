@@ -15,12 +15,14 @@ b4syk_packages:
   - libreoffice
   - hunspell-es # es dictionary for spell checking
   - hunspell-ca # cat dictionary for spell checking
- # ---
+  - libnss3-tools # security tools
+  # ---
   - mysql-client
   - mtr
  #  - netcat # included in apt-transport-https
   - ncdu
   - nmap
+  - okular # pdf pro edition like signatures
   - pdfgrep
   - rsync
   - software-properties-common
@@ -154,4 +156,8 @@ b4syk_kvm_enabled: false
 
 # Latex
 b4syk_latex: true
+
+# PKI
+b4syk_pki_folder: "/home/{{ local_user }}/.pki"
+b4syk_pki_db_folder: "{{ b4syk_pki_folder }}/nssdb"
 

@@ -1,0 +1,28 @@
+- name: PKI | Ensure Personal Public Key Infrastructure (Certificates, keys, etc.) folder exists
+  ansible.builtin.file:
+    path: "{{ b4syk_pki_folder }}"
+    state: directory
+    owner: "{{ local_user }}"
+    group: "{{ local_user }}"
+    mode: "0700"
+
+- name: PKI | Ensure Network Security Database folder exists
+  ansible.builtin.file:
+    path: "{{ b4syk_pki_db_folder }}"
+    state: directory
+    owner: "{{ local_user }}"
+    group: "{{ local_user }}"
+    mode: "0700"
+
+- name: PKI | Initialize NSS db
+  ansible.builtin.shell: echo -n "{{ b4syk_nssdb_pass }}" | certutil -N -d sql:"{{ b4syk_pki_db_folder }}"/.pki/nssdb
+  args:
+    creates: "{{ b4syk_pki_db_folder }}/.pki/nssdb/cert9.db"
+
+# - name: PKI | Import certificate into NSS
+#   ansible.builtin.command: >
+#     pk12util -i {{ cert_file }} -d sql:{{ pki_database_folder }}/nssdb -W "{{ p12_password }}"
+#   become: false
+#   environment:
+#     HOME: "/home/{{ local_user }}"
+
