@@ -13,26 +13,26 @@
     update_cache: true
   when: b4syk_shell == 'zsh'
 
-- name: Shell | Download Oh-My-Zsh installer
-  ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-    dest: "/tmp/install-ohmyzsh.sh"
-    mode: "0755"
-  when: 
-    - b4syk_shell == 'zsh'
-    - b4syk_shell_ohmyzsh
+# - name: Shell | Download Oh-My-Zsh installer
+#   ansible.builtin.get_url:
+#     url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+#     dest: "/tmp/install-ohmyzsh.sh"
+#     mode: "0755"
+#   when: 
+#     - b4syk_shell == 'zsh'
+#     - b4syk_shell_ohmyzsh
 
-- name: Run Oh-My-Zsh installer (non-interactive)
-  become_user: "{{ local_user }}"
-  environment:
-    RUNZSH: "no"
-    CHSH: "no"
-  command: "/tmp/install-ohmyzsh.sh"
-  args:
-    chdir: "/tmp"
-  when: 
-    - b4syk_shell == 'zsh'
-    - b4syk_shell_ohmyzsh
+# - name: Run Oh-My-Zsh installer (non-interactive)
+#   become_user: "{{ local_user }}"
+#   environment:
+#     RUNZSH: "no"
+#     CHSH: "no"
+#   command: "/tmp/install-ohmyzsh.sh"
+#   args:
+#     chdir: "/tmp"
+#   when: 
+#     - b4syk_shell == 'zsh'
+#     - b4syk_shell_ohmyzsh
 
 - name: Shell | Include useful aliases on .zshrc
   ansible.builtin.blockinfile:
@@ -41,84 +41,84 @@
     state: present
   when: b4syk_shell == 'zsh'
 
-- name: Shell | Include useful aliases on .bashrc 
-  ansible.builtin.blockinfile:
-    path: "/home/{{ local_user }}/.bashrc"
-    block: "{{ b4syk_shell_block }}"
-    state: present
-  when: b4syk_shell == 'bash'
+# - name: Shell | Include useful aliases on .bashrc 
+#   ansible.builtin.blockinfile:
+#     path: "/home/{{ local_user }}/.bashrc"
+#     block: "{{ b4syk_shell_block }}"
+#     state: present
+#   when: b4syk_shell == 'bash'
 
-- name: Shell | Red superchachi format for root and ls with colors
-  ansible.builtin.blockinfile:
-    path: "/root/.bashrc"
-    block: |
-      # Root user in red
-      PS1='\[\033[0;31m\]\u@\h\[\033[0m\]:\[\033[1;34m\]\w\[\033[0m\]\$ '
-      # alias ls='ls --color=auto'
-    state: present
+# - name: Shell | Red superchachi format for root and ls with colors
+#   ansible.builtin.blockinfile:
+#     path: "/root/.bashrc"
+#     block: |
+#       # Root user in red
+#       PS1='\[\033[0;31m\]\u@\h\[\033[0m\]:\[\033[1;34m\]\w\[\033[0m\]\$ '
+#       # alias ls='ls --color=auto'
+#     state: present
 
-- name: Shell | Get zsh path
-  ansible.builtin.command: which zsh
-  register: zsh_path
-  when: b4syk_shell == 'zsh'
+# - name: Shell | Get zsh path
+#   ansible.builtin.command: which zsh
+#   register: zsh_path
+#   when: b4syk_shell == 'zsh'
 
-- name: Shell | Change default shell to zsh
-  ansible.builtin.user:
-    name: "{{ local_user }}"
-    shell: "{{ zsh_path.stdout }}"
-  when: b4syk_shell == 'zsh'
+# - name: Shell | Change default shell to zsh
+#   ansible.builtin.user:
+#     name: "{{ local_user }}"
+#     shell: "{{ zsh_path.stdout }}"
+#   when: b4syk_shell == 'zsh'
 
 # Machine needs to be rebooted or all terminal processes killed in order to aply changes
 
-- name: Shell | Configure Oh-My-Zsh lines
-  ansible.builtin.lineinfile:
-    path: /home/{{ local_user }}/.zshrc
-    regexp: "{{ item.regexpy }}"
-    line: "{{ item.liney }}"
-  with_items:
-    - regexpy: '^ZSH_THEME='
-      liney: 'ZSH_THEME="agnoster"'
-  when: 
-    - b4syk_shell == 'zsh'
-    - b4syk_shell_ohmyzsh
+# - name: Shell | Configure Oh-My-Zsh lines
+#   ansible.builtin.lineinfile:
+#     path: /home/{{ local_user }}/.zshrc
+#     regexp: "{{ item.regexpy }}"
+#     line: "{{ item.liney }}"
+#   with_items:
+#     - regexpy: '^ZSH_THEME='
+#       liney: 'ZSH_THEME="agnoster"'
+#   when: 
+#     - b4syk_shell == 'zsh'
+#     - b4syk_shell_ohmyzsh
 
-- name: Shell | Oh-My-Zsh download Meslo Nerd Font
-  ansible.builtin.get_url:
-    url: https://github.com/ryanoasis/nerd-fonts/releases/download/{{ b4syk_shell_ohmyzsh_nerdfonts_release }}/Meslo.zip
-    dest: /tmp/Meslo.zip
-    mode: "0644"
-    owner: "{{ local_user }}"
-    group: "{{ local_user }}"
-  when: 
-    - b4syk_shell == 'zsh'
-    - b4syk_shell_ohmyzsh
+# - name: Shell | Oh-My-Zsh download Meslo Nerd Font
+#   ansible.builtin.get_url:
+#     url: https://github.com/ryanoasis/nerd-fonts/releases/download/{{ b4syk_shell_ohmyzsh_nerdfonts_release }}/Meslo.zip
+#     dest: /tmp/Meslo.zip
+#     mode: "0644"
+#     owner: "{{ local_user }}"
+#     group: "{{ local_user }}"
+#   when: 
+#     - b4syk_shell == 'zsh'
+#     - b4syk_shell_ohmyzsh
 
-- name: Shell | Oh-My-Zsh Extract Meslo Nerd Font
-  ansible.builtin.unarchive:
-    src: /tmp/Meslo.zip
-    dest: /usr/local/share/fonts/
-    remote_src: yes
-    owner: "root"
-    group: "root"
-  when: 
-    - b4syk_shell == 'zsh'
-    - b4syk_shell_ohmyzsh
+# - name: Shell | Oh-My-Zsh Extract Meslo Nerd Font
+#   ansible.builtin.unarchive:
+#     src: /tmp/Meslo.zip
+#     dest: /usr/local/share/fonts/
+#     remote_src: yes
+#     owner: "root"
+#     group: "root"
+#   when: 
+#     - b4syk_shell == 'zsh'
+#     - b4syk_shell_ohmyzsh
 
-- name: Shell | Oh-My-Zsh Refresh user font cache
-  ansible.builtin.command:
-    cmd: fc-cache -fv
-  when: 
-    - b4syk_shell == 'zsh'
-    - b4syk_shell_ohmyzsh
+# - name: Shell | Oh-My-Zsh Refresh user font cache
+#   ansible.builtin.command:
+#     cmd: fc-cache -fv
+#   when: 
+#     - b4syk_shell == 'zsh'
+#     - b4syk_shell_ohmyzsh
 
-- name: Shell | Triggering Oh-My-Zsh informative handler
-  ansible.builtin.debug:
-    msg: "Triggering handler"
-  changed_when: true
-  notify: Install and configure ohmyzsh plugins
-  when: 
-    - b4syk_shell == 'zsh'
-    - b4syk_shell_ohmyzsh
+# - name: Shell | Triggering Oh-My-Zsh informative handler
+#   ansible.builtin.debug:
+#     msg: "Triggering handler"
+#   changed_when: true
+#   notify: Install and configure ohmyzsh plugins
+#   when: 
+#     - b4syk_shell == 'zsh'
+#     - b4syk_shell_ohmyzsh
 
 # Remember to change the text font to a Nerd one in the Terminal Gnome Configuration. 
 # On ohmyzsh you can configure the pluggins as you wish

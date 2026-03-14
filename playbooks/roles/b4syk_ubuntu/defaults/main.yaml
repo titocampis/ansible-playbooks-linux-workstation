@@ -114,6 +114,16 @@ b4syk_shell_block: |
     *secret*
     *password*
     "'
+    
+    # Other aliases
+    alias dc='sl'
+    alias LS='sl'
+    alias Ls='sl'
+    alias lS='sl'
+    alias l='ls -la'
+    alias lo='libreoffice'
+    alias x='xdg-open'
+    alias gt='gio trash'
 
     # SSH config --> ~/.ssh/config
 
