@@ -120,15 +120,15 @@
     - b4syk_shell == 'zsh'
     - b4syk_shell_ohmyzsh
 
-Remember to change the text font to a Nerd one in the Terminal Gnome Configuration. 
-On ohmyzsh you can configure the pluggins as you wish
-plugins=(
-    git
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    history
-    sudo
-    web-search
-    copypath
-    copyfile
-)
+# Remember to change the text font to a Nerd one in the Terminal Gnome Configuration. 
+# On ohmyzsh you can configure the pluggins as you wish
+# plugins=(
+#     git
+#     zsh-autosuggestions
+#     zsh-syntax-highlighting
+#     history
+#     sudo
+#     web-search
+#     copypath
+#     copyfile
+# )
