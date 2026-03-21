@@ -4,6 +4,8 @@
     - b4syk
     - b4syk_copyq
     - b4syk_shell
+    - b4syk_shell_config
+    - b4syk_ohmyzsh
     - b4syk_git
     - b4syk_nvim
     - b4syk_vim
@@ -23,6 +25,27 @@
   tags:
     - b4syk
     - b4syk_shell
+
+- name: Just configure aliases on shells
+  ansible.builtin.import_tasks: shell_config.yaml
+  tags:
+    - b4syk
+    - b4syk_shell
+    - b4syk_shell_config
+    - b4syk_ohmyzsh
+
+- name: Shell useful configuration
+  ansible.builtin.import_tasks: shell.yaml
+  tags:
+    - b4syk
+    - b4syk_shell
+
+- name: Oh-My-Zsh configuration
+  ansible.builtin.import_tasks: ohmyzsh.yaml
+  tags:
+    - b4syk
+    - b4syk_shell
+    - b4syk_ohmyzsh
 
 - name: Git useful configuration
   ansible.builtin.import_tasks: git.yaml

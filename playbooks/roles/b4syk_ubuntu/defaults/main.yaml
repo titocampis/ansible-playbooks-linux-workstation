@@ -124,6 +124,7 @@ b4syk_shell_block: |
     alias lo='libreoffice'
     alias x='xdg-open'
     alias gt='gio trash'
+    alias ok='okular'
 
     # SSH config --> ~/.ssh/config
 
