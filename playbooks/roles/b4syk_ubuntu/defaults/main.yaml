@@ -1,8 +1,10 @@
 # Ensure Packages Installed
 b4syk_packages:
+  # General packages
   - apt-transport-https
   - bash-completion
   - ca-certificates
+  - calibre # ebook reader
   - curl
   - dnsutils
   - ffmpeg # audio processing
@@ -11,35 +13,40 @@ b4syk_packages:
   - img2pdf
   - iotop
   - keepassxc # store passwords
- # Libreoffice and dictionaries
-  - libreoffice
-  - hunspell-es # es dictionary for spell checking
-  - hunspell-ca # cat dictionary for spell checking
-  - libnss3-tools # security tools
-  # ---
   - mysql-client
   - mtr
- #  - netcat # included in apt-transport-https
+  # - netcat # included in apt-transport-https
   - ncdu
   - nmap
   - okular # pdf pro edition like signatures
   - pdfgrep
+  - pdfarranger
   - rsync
   - software-properties-common
- # Install all python3 packages system wide, better in .venv but for local tests
-  - python3
-  - python3-flask
-  - python3-matplotlib
-  - python3-pandas
-  - python3-pip
-  - python3-tabulate
- # ---
   - sshpass
   - sl
   - tmux
   - vim
   - vlc
   - xclip # for vim clipboard
+
+  # Libreoffice and dictionaries
+  - libreoffice
+  - hunspell-es # es dictionary for spell checking
+  - hunspell-ca # cat dictionary for spell checking
+  - libnss3-tools # security tools
+  
+  # Install all python3 packages system wide, better in .venv but for local tests
+  - python3
+  - python3-flask
+  - python3-matplotlib
+  - python3-pandas
+  - python3-pip
+  - python3-tabulate
+
+  # Android Tools
+  - android-tools-adb
+  - android-sdk-platform-tools
 
 # Other packages to install manually -> README.md
 # - google chrome
