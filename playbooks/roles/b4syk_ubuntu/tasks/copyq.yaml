@@ -1,0 +1,26 @@
+- name: CopyQ | Ensure CopyQ installed
+  ansible.builtin.apt:
+    name: copyq
+    update_cache: true
+
+- name: CopyQ | Ensure user autostart folder created /home/{{ local_user }}/.config/autostart
+  ansible.builtin.file:
+    path: "/home/{{ local_user }}/.config/autostart"
+    state: "directory"
+    owner:  "{{ local_user }}"
+    group: "{{ local_user }}"
+    mode: "755"
+
+- name: CopyQ | Ensure CopyQ autostart inside /home/{{ local_user }}/.config/autostart
+  ansible.builtin.copy:
+    src: "files/copyq.desktop"
+    dest: "/home/{{ local_user }}/.config/autostart/copy.desktop"
+    owner: "{{ local_user }}"
+    group: "{{ local_user }}"
+    mode: "0644"
+
+- name: CopyQ | Triggering CopyQ informative handler
+  ansible.builtin.debug:
+    msg: "Triggering handler"
+  changed_when: true
+  notify: Copyq change keyboard configuration

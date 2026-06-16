@@ -1,29 +1,66 @@
 # Ensure Packages Installed
 b4syk_packages:
+  # General packages
   - apt-transport-https
   - bash-completion
   - ca-certificates
+  - calibre # ebook reader
   - curl
   - dnsutils
+  - ffmpeg # audio processing
+  - gimp # img edition
   - htop
+  - img2pdf
   - iotop
+  - keepassxc # store passwords
   - mysql-client
   - mtr
-  - netcat
+  # - netcat # included in apt-transport-https
+  - ncdu
   - nmap
+  - okular # pdf pro edition like signatures
+  - pdfgrep
+  - pdfarranger
+  - rsync
   - software-properties-common
-  - python3
-  - python3-pip
   - sshpass
   - sl
   - tmux
   - vim
+  - vlc
+  - xclip # for vim clipboard
+
+  # Libreoffice and dictionaries
+  - libreoffice
+  - hunspell-es # es dictionary for spell checking
+  - hunspell-ca # cat dictionary for spell checking
+  - libnss3-tools # security tools
+  
+  # Install all python3 packages system wide, better in .venv but for local tests
+  - python3
+  - python3-flask
+  - python3-matplotlib
+  - python3-pandas
+  - python3-pip
+  - python3-tabulate
+
+  # Android Tools
+  - android-tools-adb
+  - android-sdk-platform-tools
+
+# Other packages to install manually -> README.md
+# - google chrome
+# - vscode
+# - brave
+# - bitwarden --> web
 
 # Shell config
-b4syk_shell: ".zshrc" # .zshrc / .bashrc
+b4syk_shell: "zsh" # zsh / bash
+b4syk_shell_ohmyzsh: True
+b4syk_shell_ohmyzsh_nerdfonts_release: "v3.2.1"
 b4syk_shell_block: |
-    # Ignore duplicate in history
-    setopt HIST_IGNORE_DUPS
+    # Export nvim from the extraction path
+    export PATH="$PATH:{{ b4syk_nvim_exec_path }}/bin"
 
     # Vim aliases
     alias svim='sudo -E vim'
@@ -84,10 +121,30 @@ b4syk_shell_block: |
     *secret*
     *password*
     "'
+    
+    # Other aliases
+    alias dc='sl'
+    alias LS='sl'
+    alias Ls='sl'
+    alias lS='sl'
+    alias l='ls -la'
+    alias lo='libreoffice'
+    alias x='xdg-open'
+    alias gt='gio trash'
+    alias ok='okular'
 
     # SSH config --> ~/.ssh/config
 
     # Git aliases --> Configured in ~/.gitconfig
+
+# Sudoers config
+b4syk_sudoers: []
+
+# NVim config
+b4syk_nvim_enabled: true
+b4syk_nvim_extract_path: "/opt"
+b4syk_nvim_exec_path: "{{ b4syk_nvim_extract_path }}/nvim-linux-x86_64"
+b4syk_nvim_installer_url: "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
 
 # Gitconfig
 b4syk_gitconfig_email: ""
@@ -95,6 +152,12 @@ b4syk_gitconfig_username: ""
 
 # Tmux
 b4syk_tmux_key: "a"
+
+# CopyQ
+b4syk_copyq_enabled: true
+
+# Disable BT boot
+b4syk_bt_boot_disabled: true
 
 # Docker Management
 b4syk_docker_enabled: true
@@ -105,3 +168,14 @@ b4syk_docker_repository: "deb [arch=amd64] https://download.docker.com/linux/ubu
 b4syk_terraform_enabled: false
 b4syk_terraform_hashicorp_gpg_key: "https://apt.releases.hashicorp.com/gpg"
 b4syk_terraform_hashicorp_repository: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+
+# Kvm
+b4syk_kvm_enabled: false
+
+# Latex
+b4syk_latex: true
+
+# PKI
+b4syk_pki_folder: "/home/{{ local_user }}/.pki"
+b4syk_pki_db_folder: "{{ b4syk_pki_folder }}/nssdb"
+

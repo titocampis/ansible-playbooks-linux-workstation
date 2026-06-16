@@ -1,0 +1,59 @@
+-- vim-options.lua
+
+-- Disable compatibility with old vi
+vim.opt.compatible = false
+
+-- Enable file type detection and plugins
+vim.cmd("filetype on")
+vim.cmd("filetype plugin indent on")
+
+-- Set colorscheme
+vim.cmd("colorscheme desert")
+
+-- Enable automatic indentation
+vim.opt.autoindent = true
+
+-- Enable syntax highlighting
+vim.cmd("syntax on")
+
+-- Add line number + relative
+vim.opt.number = true
+vim.opt.relativenumber = true
+
+-- Highlight the cursor line (horizontal)
+vim.opt.cursorline = true
+
+-- Highlight the cursor column (vertical)
+vim.opt.cursorcolumn = true
+
+-- Set shift width and tab width
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+
+-- Use spaces instead of tabs
+vim.opt.expandtab = true
+
+-- Highlight matching brackets
+vim.opt.showmatch = true
+
+-- Incremental search
+vim.opt.incsearch = true
+
+-- Case-insensitive search, unless capital used
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- Highlight all search matches
+vim.opt.hlsearch = true
+
+-- Completion menu settings
+vim.opt.wildmenu = true
+vim.opt.wildmode = { "list", "longest" }
+
+-- Share nvim clipboard with Windows, yanking also copies to windows clipboard
+vim.opt.clipboard = "unnamedplus"
+
+-- Optional settings (commented out in original)
+-- vim.opt.background = "dark"
+-- vim.opt.smarttab = true
+

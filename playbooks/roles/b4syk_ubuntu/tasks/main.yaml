@@ -1,0 +1,133 @@
+- name: Set fact local_user
+  ansible.builtin.import_tasks: set_facts.yaml
+  tags:
+    - b4syk
+    - b4syk_copyq
+    - b4syk_shell
+    - b4syk_shell_config
+    - b4syk_ohmyzsh
+    - b4syk_git
+    - b4syk_nvim
+    - b4syk_vim
+    - b4syk_tmux
+    - b4syk_docker
+    - b4syk_fzf
+    - b4syk_pki
+
+- name: Ensure base packages installed
+  ansible.builtin.import_tasks: packages.yaml
+  tags:
+    - b4syk
+    - b4syk_packages
+
+- name: Shell useful configuration
+  ansible.builtin.import_tasks: shell.yaml
+  tags:
+    - b4syk
+    - b4syk_shell
+
+- name: Just configure aliases on shells
+  ansible.builtin.import_tasks: shell_config.yaml
+  tags:
+    - b4syk
+    - b4syk_shell
+    - b4syk_shell_config
+    - b4syk_ohmyzsh
+
+- name: Shell useful configuration
+  ansible.builtin.import_tasks: shell.yaml
+  tags:
+    - b4syk
+    - b4syk_shell
+
+- name: Oh-My-Zsh configuration
+  ansible.builtin.import_tasks: ohmyzsh.yaml
+  tags:
+    - b4syk
+    - b4syk_shell
+    - b4syk_ohmyzsh
+
+- name: Git useful configuration
+  ansible.builtin.import_tasks: git.yaml
+  tags:
+    - b4syk
+    - b4syk_git
+
+- name: Ensure vim configuration
+  ansible.builtin.import_tasks: vim.yaml
+  tags:
+    - b4syk
+    - b4syk_vim
+      
+- name: Ensure nvim configuration
+  ansible.builtin.import_tasks: nvim.yaml
+  tags:
+    - b4syk
+    - b4syk_nvim
+
+- name: Ensure sudo users and visudo
+  ansible.builtin.import_tasks: sudoers.yaml
+  tags:
+    - b4syk
+    - b4syk_sudoers
+
+- name: Ensure tmux installed and configured
+  ansible.builtin.import_tasks: tmux.yaml
+  tags:
+    - b4syk
+    - b4syk_tmux
+
+- name: Ensure docker installed, configured and running
+  ansible.builtin.import_tasks: docker.yaml
+  tags:
+    - b4syk
+    - b4syk_docker
+  when: b4syk_docker_enabled
+
+- name: Ensure Terraform installed and configured
+  ansible.builtin.import_tasks: terraform.yaml
+  tags:
+    - b4syk
+    - b4syk_terraform
+  when: b4syk_terraform_enabled
+
+- name: Ensure Fuzzy Finder installed and configured for history
+  ansible.builtin.import_tasks: fzf.yaml
+  tags:
+    - b4syk
+    - b4syk_fzf
+
+- name: Ensure CopyQ installed and configured to autostart
+  ansible.builtin.import_tasks: copyq.yaml
+  tags:
+    - b4syk
+    - b4syk_copyq
+  when: b4syk_copyq_enabled
+
+- name: Ensure BT disabled when boot
+  ansible.builtin.import_tasks: bt_disabled.yaml
+  tags:
+    - b4syk
+    - b4syk_bt
+  when: b4syk_bt_boot_disabled
+
+- name: Ensure kvm configuration
+  ansible.builtin.import_tasks: kvm.yaml
+  tags:
+    - b4syk
+    - b4syk_kvm
+  when: b4syk_kvm_enabled
+
+- name: Ensure latex installed
+  ansible.builtin.import_tasks: latex.yaml
+  tags:
+    - b4syk
+    - b4syk_latex
+  when: b4syk_latex
+
+- name: Ensure PKI directories
+  ansible.builtin.import_tasks: prepare-pki.yaml
+  tags:
+    - b4syk
+    - b4syk_pki
+

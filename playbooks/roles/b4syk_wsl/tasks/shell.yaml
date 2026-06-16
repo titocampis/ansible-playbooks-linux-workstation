@@ -1,3 +1,11 @@
+- name: Shell | Ensure your favorite shell config file exists
+  ansible.builtin.file:
+    path: "/home/{{ local_user }}/{{ b4syk_shell }}"
+    state: touch
+    owner: "{{ local_user }}"
+    group: "{{ local_user }}"
+    mode: "0644"
+
 - name: Shell | Include useful aliases on your favourite shell
   ansible.builtin.blockinfile:
     path: "/home/{{ local_user }}/{{ b4syk_shell }}"

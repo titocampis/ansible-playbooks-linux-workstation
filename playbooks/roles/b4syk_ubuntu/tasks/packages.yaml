@@ -1,0 +1,10 @@
+- name: Packages | Ensure base packages installed
+  ansible.builtin.apt:
+    name: "{{ b4syk_packages }}"
+    update_cache: true
+
+- name: Packages | Triggering packages informative handler
+  ansible.builtin.debug:
+    msg: "Triggering packages handler"
+  changed_when: true
+  notify: Installation of other packages

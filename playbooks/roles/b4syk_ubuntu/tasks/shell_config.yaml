@@ -1,0 +1,22 @@
+- name: Shell | Ensure zsh config file exists
+  ansible.builtin.file:
+    path: "/home/{{ local_user }}/.zshrc"
+    state: touch
+    owner: "{{ local_user }}"
+    group: "{{ local_user }}"
+    mode: "0644"
+  when: b4syk_shell == 'zsh'
+
+- name: Shell | Include useful aliases on .zshrc
+  ansible.builtin.blockinfile:
+    path: "/home/{{ local_user }}/.zshrc"
+    block: "{{ b4syk_shell_block }}"
+    state: present
+  when: b4syk_shell == 'zsh'
+
+- name: Shell | Include useful aliases on .bashrc 
+  ansible.builtin.blockinfile:
+    path: "/home/{{ local_user }}/.bashrc"
+    block: "{{ b4syk_shell_block }}"
+    state: present
+  when: b4syk_shell == 'bash'

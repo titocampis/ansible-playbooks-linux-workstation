@@ -1,0 +1,36 @@
+- name: Shell | Ensure zsh config file exists
+  ansible.builtin.file:
+    path: "/home/{{ local_user }}/.zshrc"
+    state: touch
+    owner: "{{ local_user }}"
+    group: "{{ local_user }}"
+    mode: "0644"
+  when: b4syk_shell == 'zsh'
+
+- name: Shell | Install zsh if the shell is zsh
+  ansible.builtin.apt:
+    name: zsh
+    update_cache: true
+  when: b4syk_shell == 'zsh'
+
+- name: Shell | Red superchachi format for root and ls with colors
+  ansible.builtin.blockinfile:
+    path: "/root/.bashrc"
+    block: |
+      # Root user in red
+      PS1='\[\033[0;31m\]\u@\h\[\033[0m\]:\[\033[1;34m\]\w\[\033[0m\]\$ '
+      # alias ls='ls --color=auto'
+    state: present
+
+- name: Shell | Get zsh path
+  ansible.builtin.command: which zsh
+  register: zsh_path
+  when: b4syk_shell == 'zsh'
+
+- name: Shell | Change default shell to zsh
+  ansible.builtin.user:
+    name: "{{ local_user }}"
+    shell: "{{ zsh_path.stdout }}"
+  when: b4syk_shell == 'zsh'
+
+# Machine needs to be rebooted or all terminal processes killed in order to aply changes

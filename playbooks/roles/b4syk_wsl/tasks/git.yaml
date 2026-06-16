@@ -1,0 +1,7 @@
+- name: Git | Include useful config for Git
+  ansible.builtin.template:
+    src: gitconfig.j2
+    dest: "/home/{{ local_user }}/.gitconfig"
+    owner: "{{ local_user }}"
+    group: "{{ local_user }}"
+    mode: "0644"
